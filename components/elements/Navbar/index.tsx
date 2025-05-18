@@ -1,10 +1,11 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Navbar() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
   
   const toggleMenu = (menu: string) => {
     if (openMenu === menu) {
@@ -12,6 +13,25 @@ export default function Navbar() {
     } else {
       setOpenMenu(menu);
     }
+  };
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setOpenMenu(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // Handle link click to close menu
+  const handleLinkClick = () => {
+    setOpenMenu(null);
   };
 
   return (
@@ -25,14 +45,15 @@ export default function Navbar() {
           </div>
         </Link>
         
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-6" ref={menuRef}>
           <div className="relative">
             <Link 
               href="/services"
               className="flex items-center font-inter"
+              onClick={handleLinkClick}
             >
               Service
-              </Link>
+            </Link>
           </div>
           
           <div className="relative">
@@ -52,9 +73,9 @@ export default function Navbar() {
               )}
             </button>
             {openMenu === 'portfolio' && (
-              <div className="absolute top-full left-0 w-48 bg-default mt-2 py-2 px-4 z-10 animate-slide-down">
-                <Link href="/portfolio/item1" className="block py-2 font-inter">Portfolio Item 1</Link>
-                <Link href="/portfolio/item2" className="block py-2 font-inter">Portfolio Item 2</Link>
+              <div className="absolute top-full left-0 w-48 bg-default mt-2 py-2 px-4 z-10 animate-slide-down rounded-[15px]">
+                <Link href="/porto-dev" className="block py-2 font-inter" onClick={handleLinkClick}>Portfolio Development</Link>
+                <Link href="/porto-infra" className="block py-2 font-inter" onClick={handleLinkClick}>Portfolio Infrastructure</Link>
               </div>
             )}
           </div>
@@ -76,9 +97,10 @@ export default function Navbar() {
               )}
             </button>
             {openMenu === 'about' && (
-              <div className="absolute top-full left-0 w-48 bg-default mt-2 py-2 px-4 z-10 animate-slide-down">
-                <Link href="/visi-misi" className="block py-2 font-inter">Visi Misi</Link>
-                {/* <Link href="/about/team" className="block py-2 font-inter">Our Team</Link> */}
+              <div className="absolute top-full left-0 w-48 bg-default mt-2 py-2 px-4 z-10 animate-slide-down rounded-[15px]">
+                <Link href="/visi-misi" className="block py-2 font-inter" onClick={handleLinkClick}>Visi Misi</Link>
+                <Link href="/about-us" className="block py-2 font-inter" onClick={handleLinkClick}>Company Profile</Link>
+                {/* <Link href="/about/team" className="block py-2 font-inter" onClick={handleLinkClick}>Our Team</Link> */}
               </div>
             )}
           </div>
@@ -87,6 +109,7 @@ export default function Navbar() {
             <Link 
               href="/contact"
               className="flex items-center font-inter"
+              onClick={handleLinkClick}
             >
               Contact Us
             </Link>

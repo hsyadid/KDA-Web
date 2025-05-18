@@ -37,11 +37,47 @@
               -5px -5px 11px -5px rgba(33,90,88,0.65) inset;
 }
 
+.white_inset_shadow_modal{
+  box-shadow: 
+              5px 5px 11px -5px rgba(33,90,88,0.65) inset,
+              5px -5px 11px -5px rgba(33,90,88,0.65) inset,
+              -5px -5px 11px -5px rgba(33,90,88,0.65) inset;
+}
+
+.white_inset_shadow_card{
+  box-shadow: -15px 15px 11px -10px rgba(33,90,88,0.8) inset,
+              15px 15px 11px -10px rgba(33,90,88,0.8) inset,
+              15px -15px 11px -10px rgba(33,90,88,0.8) inset,
+              -15px -15px 11px -10px rgba(33,90,88,0.8) inset;
+}
+
 .footer_bg{
 background: #082C2A;
 background: linear-gradient(0deg, rgba(8, 44, 42, 1) 0%, rgba(8, 44, 42, 1) 28%, rgba(3, 24, 23, 1) 100%);
 }
 
+.gradient_bg{
+background: 
+  linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(8, 44, 42, 0.7)),
+  linear-gradient(4deg, rgba(8, 44, 42, 1), rgba(79, 101, 99, 1));
+background-blend-mode: overlay ;
+}
+
+.gradient_bg_sticky{
+background: 
+  linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(8, 44, 42, 0.7)),
+  linear-gradient(90deg, rgba(8, 44, 42, 1), rgba(79, 101, 99, 1));
+background-blend-mode: overlay ;
+}
+
+.gradient_bg_sticky_container{
+background: 
+  linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(8, 44, 42, 0.49)),
+  linear-gradient(90deg, rgba(8, 44, 42, 1), rgba(79, 101, 99, 1));
+background-blend-mode: overlay ;
+}
+
 .half-circle-top {
   border-radius: 50% 50% 0 0/100% 100% 0 0;
 }
+

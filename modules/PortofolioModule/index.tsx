@@ -4,7 +4,7 @@ import Image from "next/image";
 import { DM_Sans } from "next/font/google";
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
@@ -19,31 +19,57 @@ type PortofolioModuleProps = {
 const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
   // Create ref for Swiper instance
   const swiperRef = useRef<SwiperRef>(null);
+  const [mainImage, setMainImage] = useState("/placeholder-porto-plain.png");
+  const [title, setTitle] = useState("Konstruksi Rumah ABCD");
+  const [desc, setDesc] = useState(
+    "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD"
+  );
 
   const slides = [
     {
       image: "/placeholder-porto-plain.png",
       title: "Konstruksi Rumah Hunian ABC",
+      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
     },
     {
       image: "/placeholder-porto-plain.png",
       title: "Konstruksi Rumah Hunian ABC",
+      desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
     },
     {
       image: "/placeholder-porto-plain.png",
       title: "Konstruksi Rumah Hunian ABC",
+      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
     },
     {
       image: "/placeholder-porto-plain.png",
       title: "Konstruksi Rumah Hunian ABC",
+      desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
     },
     {
       image: "/placeholder-porto-plain.png",
-      title: "Konstruksi Rumah Hunian ABC",
+      title: "Konstruksi Rumah Hunian EFG",
+      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
     },
     {
       image: "/placeholder-porto-plain.png",
-      title: "Konstruksi Rumah Hunian ABC",
+      title: "Konstruksi Rumah Hunian IJK",
+      desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
+    },
+    {
+      image: "/placeholder-porto-plain.png",
+      title: "Konstruksi Rumah Hunian LMN",
+      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
+    },
+    {
+      image: "/placeholder-porto-plain.png",
+      title: "Konstruksi Rumah Hunian OPQ",
+      desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
+    },
+    {
+      image: "/placeholder-porto-plain.png",
+      title: "Konstruksi Rumah Hunian RST",
+      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
     },
   ];
 
@@ -80,39 +106,40 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
   };
 
   return (
-    <div className={`${dmSans.className}`}>
+    <div className={`${dmSans.className} `}>
       {/* Desktop View */}
-      <div className="flex max-md:hidden flex-row items-center min-h-screen bg-gradient-to-t from-[#082C2A] to-[##031817] overflow-x-hidden">
-        {/* Left Side Image */}
+      <div className="flex max-md:hidden -translate-y-24 flex-row items-center h-screen overflow-hidden bg-gradient-to-t from-[#082C2A] to-[##031817] overflow-x-hidden">
         <Image
           src="/grid.png"
           alt="background-grid"
           fill
           className="object-cover opacity-10 -z-2 "
         />
-        <div className="relative w-1/2 h-screen">
+
+        {/* Left Side Image */}
+        <div className="relative w-full h-full ">
           <Image
-            src="/placeholder-porto.png"
+            src={mainImage}
             alt="Sample Image"
             fill
-            className="object-cover"
+            className="object-cover "
           />
+          <div className="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-green-1 to-transparent pointer-events-none" />
         </div>
 
         {/* Right Side Content */}
-        <div className="w-1/2 pl-14 flex items-center text-start">
+        <div className="w-1/2 pl-14 flex items-center text-start pt-24">
           <div className="flex flex-col pr-9 w-full">
             <p className="text-[#FFBD59] font-bold text-3xl ">{portoType}</p>
             <p className="text-white xl:text-6xl text-4xl font-bold mt-4">
-              Konstruksi Rumah ABCD
+              {title}
             </p>
             <p className="text-2xl  text-white mt-4 line-clamp-3 pr-20">
-              Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD
-              Konstruksi Rumah ABCD Konstruksi Rumah ABCD
+              {desc}
             </p>
 
             {/* Carousel */}
-            <div className="mt-24 -translate-x-96 relative">
+            <div className="mt-40 -translate-x-96 relative">
               <Swiper
                 ref={swiperRef}
                 spaceBetween={20}
@@ -124,7 +151,7 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
                     slidesPerView: 2, // md
                   },
                   1024: {
-                    slidesPerView: 3, // lg
+                    slidesPerView: 4, // lg
                   },
                   1280: {
                     slidesPerView: 5, // xl
@@ -142,7 +169,7 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
                 {slides.map((slide, index) => (
                   <SwiperSlide key={index}>
                     <div
-                      className={`w-full h-96 ${
+                      className={`w-full relative h-[400px] ${
                         index % 2 === 0 ? "items-end" : "items-start"
                       } flex`}
                     >
@@ -151,7 +178,14 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
                         alt={slide.title}
                         fill
                         className="object-cover rounded-xl w-full"
+                        onClick={() => {
+                          setMainImage(slide.image);
+                          setTitle(slide.title);
+                          setDesc(slide.desc);
+                        }}
                       />
+
+                      {/* sillhoute below */}
                       <div className="absolute w-full h-1/3 opacity-40 rounded-t-lg bg-[#215A58] blur-xl" />
                       <p className="text-white text-3xl absolute font-bold p-5 mt-2 z-10">
                         {slide.title}
@@ -242,7 +276,7 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 xl:gap-12 gap-5 pt-6 z-20">
+        <div className="grid grid-cols-2 xl:px-32  justify-center xl:gap-12 gap-5 pt-6 z-20">
           <Modal
             imageHeight={false}
             title="HEADER 1"

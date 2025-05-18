@@ -45,6 +45,18 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
       image: "/placeholder-porto-plain.png",
       title: "Konstruksi Rumah Hunian ABC",
     },
+    {
+      image: "/placeholder-porto-plain.png",
+      title: "Konstruksi Rumah Hunian ABC",
+    },
+    {
+      image: "/placeholder-porto-plain.png",
+      title: "Konstruksi Rumah Hunian ABC",
+    },
+    {
+      image: "/placeholder-porto-plain.png",
+      title: "Konstruksi Rumah Hunian ABC",
+    },
   ];
 
   const cards = [
@@ -82,17 +94,18 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
   return (
     <div className={`${dmSans.className}`}>
       {/* Desktop View */}
-      <div className="flex max-md:hidden flex-row items-center min-h-screen bg-gradient-to-t from-[#082C2A] to-[##031817] overflow-x-hidden">
-        {/* Left Side Image */}
+      <div className="flex max-md:hidden flex-row items-center h-screen overflow-hidden bg-gradient-to-t from-[#082C2A] to-[##031817] overflow-x-hidden">
         <Image
           src="/grid.png"
           alt="background-grid"
           fill
           className="object-cover opacity-10 -z-2 "
         />
-        <div className="relative w-1/2 h-screen">
+
+        {/* Left Side Image */}
+        <div className="relative w-1/2 h-screen ">
           <Image
-            src="/placeholder-porto.png"
+            src="/porto-placeholder.png"
             alt="Sample Image"
             fill
             className="object-cover"
@@ -112,7 +125,7 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
             </p>
 
             {/* Carousel */}
-            <div className="mt-24 -translate-x-96 relative">
+            <div className="mt-40 -translate-x-96 relative">
               <Swiper
                 ref={swiperRef}
                 spaceBetween={20}
@@ -124,7 +137,7 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
                     slidesPerView: 2, // md
                   },
                   1024: {
-                    slidesPerView: 3, // lg
+                    slidesPerView: 4, // lg
                   },
                   1280: {
                     slidesPerView: 5, // xl
@@ -142,7 +155,7 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
                 {slides.map((slide, index) => (
                   <SwiperSlide key={index}>
                     <div
-                      className={`w-full h-96 ${
+                      className={`w-full relative h-[400px] ${
                         index % 2 === 0 ? "items-end" : "items-start"
                       } flex`}
                     >
@@ -152,6 +165,8 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
                         fill
                         className="object-cover rounded-xl w-full"
                       />
+
+                      {/* sillhoute below */}
                       <div className="absolute w-full h-1/3 opacity-40 rounded-t-lg bg-[#215A58] blur-xl" />
                       <p className="text-white text-3xl absolute font-bold p-5 mt-2 z-10">
                         {slide.title}
@@ -242,7 +257,7 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 xl:gap-12 gap-5 pt-6 z-20">
+        <div className="grid grid-cols-2 xl:px-32  justify-center xl:gap-12 gap-5 pt-6 z-20">
           <Modal
             imageHeight={false}
             title="HEADER 1"

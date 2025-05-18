@@ -19,7 +19,7 @@ export default function Services() {
       </div>
       
       {/* Background texture */}
-      <div className="absolute inset-0 w-full h-full opacity-5 brightness-150 pointer-events-none z-[2]">
+      <div className="absolute inset-0 w-full h-full opacity-10 brightness-150 pointer-events-none z-[2]">
         <Image 
           src="/Textures.png" 
           alt="Background Texture" 
@@ -53,9 +53,9 @@ export default function Services() {
               />
           </div>
 
-          <div className="absolute right-2 top-0 brightness-150 w-[320px] h-[400px] pointer-events-none z-[2]">
+          <div className="absolute right-15 top-10 brightness-150 w-[200px] h-[300px] pointer-events-none z-[2] -rotate-42">
               <Image 
-                src="/service_things.png" 
+                src="/hammer.png" 
                 alt="object" 
                 fill
                 style={{ objectFit: 'cover' }}
@@ -63,9 +63,9 @@ export default function Services() {
               />
           </div>
             
-            <div className="absolute right-52 -bottom-32 brightness-150 w-[320px] h-[400px] pointer-events-none z-[2] rotate-42">
+            <div className="absolute right-52 -bottom-0 brightness-150 w-[330px] h-[250px] pointer-events-none z-[2] rotate-20">
               <Image 
-                src="/service_things.png" 
+                src="/bridge.png" 
                 alt="object" 
                 fill
                 style={{ objectFit: 'cover' }}
@@ -114,9 +114,9 @@ export default function Services() {
               />
           </div>
 
-            <div className="absolute left-2 top-0 brightness-150 w-[320px] h-[400px] pointer-events-none z-[2] rotate-42">
+            <div className="absolute left-2 top-10 brightness-150 w-[220px] h-[300px] pointer-events-none z-[2] -rotate-22">
               <Image 
-                src="/service_things.png" 
+                src="/dokument.png" 
                 alt="object" 
                 fill
                 style={{ objectFit: 'cover' }}
@@ -124,9 +124,9 @@ export default function Services() {
               />
           </div>
             
-            <div className="absolute left-52 -bottom-32 brightness-150 w-[320px] h-[400px] pointer-events-none z-[2]">
+            <div className="absolute left-55 -bottom-0 brightness-150 w-[250px] h-[300px] pointer-events-none z-[2]">
               <Image 
-                src="/service_things.png" 
+                src="/pencil.png" 
                 alt="object" 
                 fill
                 style={{ objectFit: 'cover' }}

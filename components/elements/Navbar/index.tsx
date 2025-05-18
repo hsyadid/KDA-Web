@@ -15,7 +15,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-default  text-white  py-4 px-10 w-[90%] mx-auto mt-4 rounded-[22px] white_inset_shadow z-[999]">
+    <nav className="bg-default text-white  py-4 px-10 w-[90%] mx-auto mt-4 rounded-[22px] white_inset_shadow z-[999]">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-4">
           <Image

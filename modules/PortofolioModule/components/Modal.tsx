@@ -86,7 +86,7 @@ const Modal = ({
       <div
         className={`${
           isModalOpen ? "" : "hidden"
-        } fixed flex flex-col max-xl:hidden justify-center items-center w-full h-full bg-black/60 inset-0 z-50`}
+        } fixed flex flex-col max-xl:hidden  justify-center items-center w-full h-full bg-black/30 backdrop-blur-lg inset-0 z-50`}
       >
         <div className="flex flex-row justify-center items-center">
           <div className="flex flex-col space-y-9 w-[691px]">
@@ -97,13 +97,16 @@ const Modal = ({
               <Image src="/arrow.svg" alt="Arrow Icon" width={53} height={50} />
             </button>
 
-            <div className="w-full  h-[410px] relative ">
+            <div
+              className="w-full  h-[410px] relative border-2 border-white rounded-lg z-20 lg:p-5 shadow-white "
+              style={{ boxShadow: "inset 0 0 10px rgba(255, 255, 255, 0.2)" }}
+            >
               {mediaList[currentIndex].type === "image" ? (
                 <Image
                   src={mainImage}
                   alt="placeholder"
                   fill
-                  className="object-cover z-20 rounded-lg"
+                  className="object-cover rounded-md "
                 />
               ) : (
                 <div className="relative w-full z-20 h-full">

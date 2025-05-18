@@ -97,28 +97,25 @@ const Modal = ({
               <Image src="/arrow.svg" alt="Arrow Icon" width={53} height={50} />
             </button>
 
-            <div
-              className="w-full  h-[410px] relative border-2 border-white rounded-lg z-20 lg:p-5 shadow-white "
-              style={{ boxShadow: "inset 0 0 10px rgba(255, 255, 255, 0.2)" }}
-            >
+            <div className="w-full  h-[410px] relative z-20 lg:p-5 ">
               {mediaList[currentIndex].type === "image" ? (
                 <Image
                   src={mainImage}
                   alt="placeholder"
                   fill
-                  className="object-cover rounded-md "
+                  className="object-cover  border-2 border-white rounded-lg"
                 />
               ) : (
                 <div className="relative w-full z-20 h-full">
                   <video
                     src={mediaList[currentIndex].src}
-                    className="w-full h-full  object-cover rounded-lg "
+                    className="w-full h-full  object-cover rounded-lg border-2 border-white  "
                     autoPlay
                   />
                 </div>
               )}
 
-              <div className="flex absolute inset-0 z-30 justify-end text-end items-end  pr-4 pb-4">
+              <div className="flex absolute inset-0 z-30 justify-end text-end items-end  pr-8 pb-8">
                 <p className="font-white font-bold text-xl text-white">
                   {progressPercentage}% <br /> Work in Progress
                 </p>

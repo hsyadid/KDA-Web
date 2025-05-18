@@ -128,7 +128,7 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
         </div>
 
         {/* Right Side Content */}
-        <div className="w-1/2 pl-14 flex items-center text-start pt-24">
+        <div className="w-1/2 pl-14 flex items-center text-start 2xl:pt-24 xl:pt-42 pt-28">
           <div className="flex flex-col pr-9 w-full">
             <p className="text-[#FFBD59] font-bold text-3xl ">{portoType}</p>
             <p className="text-white xl:text-6xl text-4xl font-bold mt-4">
@@ -139,7 +139,7 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
             </p>
 
             {/* Carousel */}
-            <div className="mt-40 -translate-x-96 relative">
+            <div className="2xl:mt-40 xl:mt-20 -translate-x-96 relative">
               <Swiper
                 ref={swiperRef}
                 spaceBetween={20}
@@ -169,7 +169,7 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
                 {slides.map((slide, index) => (
                   <SwiperSlide key={index}>
                     <div
-                      className={`w-full relative h-[400px] ${
+                      className={`w-full relative min-xl:h-[400px] h-[200px] ${
                         index % 2 === 0 ? "items-end" : "items-start"
                       } flex`}
                     >

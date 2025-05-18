@@ -61,7 +61,7 @@ export default function VisiMisi() {
           
           <div className="flex flex-col justify-center items-end">
             <h2 className="text-5xl font-bold mb-6 text-right">VISI</h2>
-            <p className="text-lg text-right">
+            <p className="text-lg text-right max-w-[550px]">
               Memberikan standar kerja secara efisien, efektif dan 
               terorganisir secara berkelanjutan melalui komitmen 
               GCG (Good Corporate Governance) dan CSR 

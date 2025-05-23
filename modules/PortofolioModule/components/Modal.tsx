@@ -35,6 +35,8 @@ const Modal = ({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [mainImage, setMainImage] = useState<string>(mediaList[0]?.src || "");
   const swiperRef = useRef<SwiperRef>(null);
+  const desktopVideoRef = useRef<HTMLVideoElement>(null);
+  const mobileVideoRef = useRef<HTMLVideoElement>(null);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -51,6 +53,13 @@ const Modal = ({
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      // Pause videos when modal is closed
+      if (desktopVideoRef.current) {
+        desktopVideoRef.current.pause();
+      }
+      if (mobileVideoRef.current) {
+        mobileVideoRef.current.pause();
+      }
     }
 
     return () => {
@@ -124,6 +133,7 @@ const Modal = ({
               ) : (
                 <div className="relative w-full z-20 h-full">
                   <video
+                    ref={desktopVideoRef}
                     src={mediaList[currentIndex].src}
                     className="w-full h-full  object-cover rounded-lg border-2 border-white  "
                     autoPlay
@@ -161,7 +171,7 @@ const Modal = ({
                         />
                       </div>
                     ) : (
-                      <div className="relative w-1/4 h-full">
+                      <div className="relative w-full  h-full">
                         <video
                           src={mediaSource.src}
                           className="w-full h-full object-cover rounded-lg hover:cursor-pointer"
@@ -232,8 +242,9 @@ const Modal = ({
                 />
               ) : (
                 <video
+                  ref={mobileVideoRef}
                   src={mediaList[currentIndex].src}
-                  className="w-full h-full  object-cover rounded-lg "
+                  className="w-full h-full object-cover rounded-lg "
                   autoPlay
                 />
               )}
@@ -258,7 +269,7 @@ const Modal = ({
                           src={mediaSrc.src}
                           alt="placeholder"
                           fill
-                          className="object-cover rounded-lg"
+                          className="object-cover rounded-lg hover:cursor-pointer"
                           onClick={() => {
                             setCurrentIndex(index);
                             setMainImage(mainImage);
@@ -266,17 +277,20 @@ const Modal = ({
                         />
                       </div>
                     ) : (
-                      <div className="relative w-1/2">
+                      <div className="relative md:h-40 h-20">
                         <video
+                          className="object-cover w-full h-full rounded-lg hover:cursor-pointer"
                           src={mediaSrc.src}
-                          className="w-full h-full object-cover rounded-lg hover:cursor-pointer"
+                          onError={() =>
+                            console.error("Failed to load video:", mediaSrc.src)
+                          }
                           onClick={() => {
                             setCurrentIndex(index);
                             setMainImage(mainImage);
                           }}
                         />
                       </div>
-                    )}{" "}
+                    )}
                   </SwiperSlide>
                 ))}
               </Swiper>

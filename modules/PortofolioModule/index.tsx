@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import Modal from "./components/Modal";
+import { progressPercentage } from "framer-motion";
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
@@ -16,82 +17,236 @@ type PortofolioModuleProps = {
   portoType: string;
 };
 
-const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
+const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
   // Create ref for Swiper instance
   const swiperRef = useRef<SwiperRef>(null);
-  const [mainImage, setMainImage] = useState("/placeholder-porto-plain.png");
+  const [mainImage, setMainImage] = useState(
+    portoType === "Development" ? "/modal1/1.jpeg" : "/modal5/1.png"
+  );
   const [title, setTitle] = useState("Konstruksi Rumah ABCD");
   const [desc, setDesc] = useState(
     "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD"
   );
 
-  const slides = [
+  const imageList1 = Array.from({ length: 28 }, (_, i) => ({
+    type: "image",
+    src: `/modal1/${i + 1}.jpeg`,
+  }));
+
+  const mediaList1 = [
+    ...imageList1,
     {
-      image: "/placeholder-porto-plain.png",
+      type: "video",
+      src: "modal1/IPB_DEV_VID.mp4",
+    },
+  ];
+
+  const imageList2 = Array.from({ length: 28 }, (_, i) => ({
+    type: "image",
+    src: `/modal2/${i + 1}.jpeg`,
+  }));
+
+  const mediaList2 = [
+    ...imageList2,
+    {
+      type: "video",
+      src: "modal2/KAI_DEV_VID.mp4",
+    },
+  ];
+
+  const imageList3 = Array.from({ length: 28 }, (_, i) => ({
+    type: "image",
+    src: `/modal3/${i + 1}.jpeg`,
+  }));
+
+  const mediaList3 = [...imageList3];
+
+  const imageList5 = Array.from({ length: 2 }, (_, i) => ({
+    type: "image",
+    src: `/modal5/${i + 1}.png`,
+  }));
+
+  const mediaList5 = [
+    ...imageList5,
+    {
+      type: "video",
+      src: "modal5/1.mp4",
+    },
+    {
+      type: "video",
+      src: "modal5/2.mp4",
+    },
+  ];
+
+  const imageList6 = Array.from({ length: 3 }, (_, i) => ({
+    type: "image",
+    src: `/modal6/${i + 1}.png`,
+  }));
+
+  const mediaList6 = [
+    ...imageList6,
+    {
+      type: "video",
+      src: "modal6/1.mp4",
+    },
+    {
+      type: "video",
+      src: "modal6/2.mp4",
+    },
+    {
+      type: "video",
+      src: "modal6/3.mp4",
+    },
+  ];
+
+  const imageList7 = Array.from({ length: 3 }, (_, i) => ({
+    type: "image",
+    src: `/modal7/${i + 1}.png`,
+  }));
+
+  const mediaList7 = [
+    ...imageList7,
+    {
+      type: "video",
+      src: "modal7/1.mp4",
+    },
+    {
+      type: "video",
+      src: "modal7/2.mp4",
+    },
+    {
+      type: "video",
+      src: "modal7/3.mp4",
+    },
+  ];
+
+  const imageList8 = Array.from({ length: 3 }, (_, i) => ({
+    type: "image",
+    src: `/modal8/${i + 1}.png`,
+  }));
+
+  const mediaList8 = [
+    ...imageList8,
+    {
+      type: "video",
+      src: "modal8/1.mp4",
+    },
+    {
+      type: "video",
+      src: "modal8/2.mp4",
+    },
+    {
+      type: "video",
+      src: "modal8/3.mp4",
+    },
+  ];
+
+  const developmentSlides = [
+    {
+      image: "/modal1/1.jpeg",
       title: "Konstruksi Rumah Hunian ABC",
       desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
     },
     {
-      image: "/placeholder-porto-plain.png",
+      image: "/modal1/2.jpeg",
       title: "Konstruksi Rumah Hunian ABC",
       desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
     },
     {
-      image: "/placeholder-porto-plain.png",
+      image: "/modal1/3.jpeg",
       title: "Konstruksi Rumah Hunian ABC",
       desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
     },
     {
-      image: "/placeholder-porto-plain.png",
+      image: "/modal1/4.jpeg",
       title: "Konstruksi Rumah Hunian ABC",
       desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
     },
     {
-      image: "/placeholder-porto-plain.png",
+      image: "/modal2/1.jpeg",
       title: "Konstruksi Rumah Hunian EFG",
       desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
     },
     {
-      image: "/placeholder-porto-plain.png",
+      image: "/modal2/2.jpeg",
       title: "Konstruksi Rumah Hunian IJK",
       desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
     },
     {
-      image: "/placeholder-porto-plain.png",
+      image: "/modal2/3.jpeg",
+
       title: "Konstruksi Rumah Hunian LMN",
       desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
     },
     {
-      image: "/placeholder-porto-plain.png",
+      image: "/modal3/2.jpeg",
+
       title: "Konstruksi Rumah Hunian OPQ",
       desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
     },
     {
-      image: "/placeholder-porto-plain.png",
+      image: "/modal3/3.jpeg",
+
       title: "Konstruksi Rumah Hunian RST",
       desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
     },
   ];
 
-  const cards = [
+  const infrastructureSlides = [
     {
-      image: "/placeholder-porto-plain.png",
-      header: "HEADER 1",
-      desc: "Short desc",
+      image: "/modal5/1.png",
+      title: "Konstruksi Rumah Hunian ABC",
+      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
     },
     {
-      image: "/placeholder-porto-plain.png",
-      header: "HEADER 2",
-      desc: "Short desc",
+      image: "/modal5/2.png",
+      title: "Konstruksi Rumah Hunian ABC",
+      desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
     },
     {
-      image: "/placeholder-porto-plain.png",
-      header: "HEADER 3",
-      desc: "Short desc",
+      image: "/modal6/1.png",
+
+      title: "Konstruksi Rumah Hunian ABC",
+      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
+    },
+    {
+      image: "/modal6/2.png",
+      title: "Konstruksi Rumah Hunian ABC",
+      desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
+    },
+    {
+      image: "/modal6/3.png",
+      title: "Konstruksi Rumah Hunian EFG",
+      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
+    },
+    {
+      image: "/modal7/1.png",
+
+      title: "Konstruksi Rumah Hunian IJK",
+      desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
+    },
+    {
+      image: "/modal7/2.png",
+
+      title: "Konstruksi Rumah Hunian LMN",
+      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
+    },
+    {
+      image: "/modal7/3.png",
+
+      title: "Konstruksi Rumah Hunian OPQ",
+      desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
+    },
+    {
+      image: "/modal7/5.png",
+
+      title: "Konstruksi Rumah Hunian RST",
+      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
     },
   ];
 
-  const modalList = [Modal, Modal, Modal, Modal, Modal, Modal, Modal, Modal];
+  const slides =
+    portoType === "Development" ? developmentSlides : infrastructureSlides;
 
   const handlePrev = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
@@ -277,76 +432,137 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
         </div>
 
         <div className="grid grid-cols-2 xl:px-32  justify-center xl:gap-12 gap-5 pt-6 z-20">
-          <Modal
-            imageHeight={false}
-            title="HEADER 1"
-            shortDescription="Short Desc"
-            longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
+          {portoType === "Development" ? (
+            <>
+              <Modal
+                imageHeight={false}
+                title="INNOPRENEURSHIP CENTRE MANDIRI IPB"
+                shortDescription="Short Desc"
+                longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
             PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
             ### : 123
             ### :
             ###
             ###"
-            mediaList={[
-              { type: "image", src: "/modal1/1.jpeg" },
-              { type: "image", src: "/modal1/2.jpeg" },
-              { type: "image", src: "/modal1/3.jpeg" },
-              { type: "image", src: "/modal1/4.jpeg" },
-              { type: "image", src: "/modal1/5.jpeg" },
-            ]}
-            progressPercentage={50}
-            category={portoType}
-          />
+                mediaList={mediaList1}
+                progressPercentage={50}
+                category={portoType}
+              />
 
-          <Modal
-            imageHeight={false}
-            title="HEADER 2"
-            shortDescription="Short Desc"
-            longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
+              <Modal
+                imageHeight={false}
+                title="KAI SERPONG"
+                shortDescription="Short Desc"
+                longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
             PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
             ### : 123
             ### :
             ###
             ###"
-            mediaList={[
-              { type: "image", src: "/placeholder-porto-plain.png" },
-              { type: "image", src: "/sample1.png" },
-              { type: "image", src: "/placeholder-porto-plain.png" },
-              // {
-              //   type: "video",
-              //   src: "https://www.youtube.com/embed/u31qwQUeGuM",
-              // },
-            ]}
-            progressPercentage={50}
-            category={portoType}
-          />
+                mediaList={mediaList2}
+                progressPercentage={50}
+                category={portoType}
+              />
+              <Modal
+                imageHeight={false}
+                title="MANDIRI FLAT TASIKMALAYA"
+                shortDescription="Short Desc"
+                longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
+            PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
+            ### : 123
+            ### :
+            ###
+            ###"
+                mediaList={mediaList3}
+                progressPercentage={50}
+                category={portoType}
+              />
 
-          <Modal
-            imageHeight={false}
-            title="HEADER 3"
-            shortDescription="Short Desc"
-            longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
+              <Modal
+                imageHeight={false}
+                title="PEMANCINGAN PASIR TANJUNG"
+                shortDescription="Short Desc"
+                longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
             PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
             ### : 123
             ### :
             ###
             ###"
-            mediaList={[
-              { type: "image", src: "/placeholder-porto-plain.png" },
-              { type: "image", src: "/placeholder-porto-plain.png" },
-              { type: "image", src: "/placeholder-porto-plain.png" },
-              // {
-              //   type: "video",
-              //   src: "https://www.youtube.com/embed/u31qwQUeGuM",
-              // },
-            ]}
-            progressPercentage={50}
-            category={portoType}
-          />
+                mediaList={[
+                  { type: "image", src: "/modal4/1.png" },
+                  { type: "video", src: "/modal4/1.mp4" },
+                ]}
+                progressPercentage={50}
+                category={portoType}
+              />
+            </>
+          ) : (
+            <>
+              <Modal
+                imageHeight={false}
+                title="SMPN 7 TAMBUN"
+                shortDescription="Short Desc"
+                longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
+            PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
+            ### : 123
+            ### :
+            ###
+            ###"
+                mediaList={mediaList5}
+                progressPercentage={50}
+                category={portoType}
+              />
+
+              <Modal
+                imageHeight={false}
+                title="STADION MINI BOJONG MANGU"
+                shortDescription="Short Desc"
+                longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
+            PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
+            ### : 123
+            ### :
+            ###
+            ###"
+                mediaList={mediaList6}
+                progressPercentage={50}
+                category={portoType}
+              />
+
+              <Modal
+                imageHeight={false}
+                title="UPTD PPA"
+                shortDescription="Short Desc"
+                longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
+            PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
+            ### : 123
+            ### :
+            ###
+            ###"
+                mediaList={mediaList7}
+                progressPercentage={50}
+                category={portoType}
+              />
+
+              <Modal
+                imageHeight={false}
+                title="WORKSHOP BINAMARGA"
+                shortDescription="Short Desc"
+                longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
+            PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
+            ### : 123
+            ### :
+            ###
+            ###"
+                mediaList={mediaList8}
+                progressPercentage={50}
+                category={portoType}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default PortofolioModule;
+export default PortofolioModuleDev;

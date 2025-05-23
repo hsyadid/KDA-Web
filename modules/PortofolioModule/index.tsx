@@ -108,7 +108,7 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
   return (
     <div className={`${dmSans.className} `}>
       {/* Desktop View */}
-      <div className="flex max-md:hidden -translate-y-24 flex-row items-center h-screen overflow-hidden bg-gradient-to-t from-[#082C2A] to-[##031817] overflow-x-hidden">
+      <div className="flex max-md:hidden -translate-y-24 flex-row items-center h-[110vh] overflow-hidden bg-gradient-to-t from-[#082C2A] to-[##031817] overflow-x-hidden">
         <Image
           src="/grid.png"
           alt="background-grid"
@@ -128,18 +128,20 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
         </div>
 
         {/* Right Side Content */}
-        <div className="w-1/2 pl-14 flex items-center text-start pt-24">
+        <div className="w-1/2  pl-14 flex items-center text-start pt-24 xl:pt-25 ">
           <div className="flex flex-col pr-9 w-full">
-            <p className="text-[#FFBD59] font-bold text-3xl ">{portoType}</p>
-            <p className="text-white xl:text-6xl text-4xl font-bold mt-4">
+            <p className="text-[#FFBD59] font-bold xl:text-2xl text-md ">
+              {portoType}
+            </p>
+            <p className="text-white xl:text-[3vw] text-4xl font-bold mt-4">
               {title}
             </p>
-            <p className="text-2xl  text-white mt-4 line-clamp-3 pr-20">
+            <p className=" xl:text-xl text-lg  text-white mt-4 line-clamp-3 pr-20">
               {desc}
             </p>
 
             {/* Carousel */}
-            <div className="mt-40 -translate-x-96 relative">
+            <div className="xl:mt-10 mt-10 -translate-x-67 relative bg-red-500s">
               <Swiper
                 ref={swiperRef}
                 spaceBetween={20}
@@ -164,12 +166,12 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
                   disableOnInteraction: false,
                 }}
                 modules={[Autoplay, Navigation]}
-                className="w-screen"
+                className="w-[1100px]"
               >
                 {slides.map((slide, index) => (
                   <SwiperSlide key={index}>
                     <div
-                      className={`w-full relative h-[400px] ${
+                      className={`w-full relative h-[320px] ${
                         index % 2 === 0 ? "items-end" : "items-start"
                       } flex`}
                     >
@@ -177,7 +179,7 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
                         src={slide.image}
                         alt={slide.title}
                         fill
-                        className="object-cover rounded-xl w-full"
+                        className="object-cover rounded-xl w-full "
                         onClick={() => {
                           setMainImage(slide.image);
                           setTitle(slide.title);
@@ -187,7 +189,7 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
 
                       {/* sillhoute below */}
                       <div className="absolute w-full h-1/3 opacity-40 rounded-t-lg bg-[#215A58] blur-xl" />
-                      <p className="text-white text-3xl absolute font-bold p-5 mt-2 z-10">
+                      <p className="text-white xl:text-2xl text-xl absolute font-bold p-5 mt-2 z-10">
                         {slide.title}
                       </p>
                     </div>
@@ -195,7 +197,8 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
                 ))}
               </Swiper>
             </div>
-            <div className="flex w-full justify-end mt-12">
+
+            <div className="flex w-full justify-end mt-7">
               <button
                 className="text-white hover:cursor-pointer transition-opacity hover:opacity-75"
                 onClick={handlePrev}
@@ -204,8 +207,8 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
                 <Image
                   src="/chevron-left.svg"
                   alt="left arrow"
-                  width={56.4}
-                  height={56.4}
+                  width={35}
+                  height={35}
                 />
               </button>
               <button
@@ -216,8 +219,8 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
                 <Image
                   src="/chevron-right.svg"
                   alt="right arrow"
-                  width={56.4}
-                  height={56.4}
+                  width={35}
+                  height={35}
                 />
               </button>
             </div>
@@ -269,36 +272,41 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
             Portofolio
           </p>
           <p className="text-white font-bold lg:text-7xl md:text-5xl text-2xl">
-            Development
+            {portoType === "Development"
+              ? "Development Planers"
+              : portoType}
           </p>
           <p className="text-white lg:text-3xl md:text-2xl text-md">
-            {portoType}
+            All works
           </p>
         </div>
 
-        <div className="grid grid-cols-2 xl:px-32  justify-center xl:gap-12 gap-5 pt-6 z-20">
-          <Modal
-            imageHeight={false}
-            title="HEADER 1"
-            shortDescription="Short Desc"
-            longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
-            PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
-            ### : 123
-            ### :
-            ###
-            ###"
-            mediaList={[
-              { type: "image", src: "/placeholder-porto-plain.png" },
-              { type: "image", src: "/images.jpeg" },
-              { type: "image", src: "/instagram.svg" },
-              {
-                type: "video",
-                src: "/placeholder-video.mp4",
-              },
-            ]}
-            progressPercentage={50}
-            category={portoType}
-          />
+        <div className="grid grid-cols-2 auto-rows-auto justify-center xl:gap-12 gap-5 pt-6 z-20 mt-5">
+         
+          <div className="row-span-2">
+            <Modal
+              imageHeight={true}
+              title="HEADER 1"
+              shortDescription="Short Desc"
+              longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
+              PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
+              ### : 123
+              ### :
+              ###
+              ###"
+              mediaList={[
+                { type: "image", src: "/placeholder-porto-plain.png" },
+                { type: "image", src: "/images.jpeg" },
+                { type: "image", src: "/instagram.svg" },
+                {
+                  type: "video",
+                  src: "/placeholder-video.mp4",
+                },
+              ]}
+              progressPercentage={50}
+              category={portoType}
+            />
+          </div>
 
           <Modal
             imageHeight={false}
@@ -323,9 +331,34 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
             category={portoType}
           />
 
+          <div className="row-span-2">
+            <Modal
+              imageHeight={true}
+              title="HEADER 3"
+              shortDescription="Short Desc"
+              longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
+              PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
+              ### : 123
+              ### :
+              ###
+              ###"
+              mediaList={[
+                { type: "image", src: "/placeholder-porto-plain.png" },
+                { type: "image", src: "/placeholder-porto-plain.png" },
+                { type: "image", src: "/placeholder-porto-plain.png" },
+                {
+                  type: "video",
+                  src: "https://www.youtube.com/embed/u31qwQUeGuM",
+                },
+              ]}
+              progressPercentage={50}
+              category={portoType}
+            />
+          </div>
+
           <Modal
             imageHeight={false}
-            title="HEADER 3"
+            title="HEADER 2"
             shortDescription="Short Desc"
             longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
             PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
@@ -335,7 +368,7 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
             ###"
             mediaList={[
               { type: "image", src: "/placeholder-porto-plain.png" },
-              { type: "image", src: "/placeholder-porto-plain.png" },
+              { type: "image", src: "/sample1.png" },
               { type: "image", src: "/placeholder-porto-plain.png" },
               {
                 type: "video",
@@ -345,6 +378,56 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
             progressPercentage={50}
             category={portoType}
           />
+
+         
+          <div className="row-span-2">
+            <Modal
+              imageHeight={true}
+              title="HEADER 1"
+              shortDescription="Short Desc"
+              longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
+              PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
+              ### : 123
+              ### :
+              ###
+              ###"
+              mediaList={[
+                { type: "image", src: "/placeholder-porto-plain.png" },
+                { type: "image", src: "/images.jpeg" },
+                { type: "image", src: "/instagram.svg" },
+                {
+                  type: "video",
+                  src: "/placeholder-video.mp4",
+                },
+              ]}
+              progressPercentage={50}
+              category={portoType}
+            />
+          </div>
+
+          <Modal
+            imageHeight={false}
+            title="HEADER 2"
+            shortDescription="Short Desc"
+            longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
+            PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
+            ### : 123
+            ### :
+            ###
+            ###"
+            mediaList={[
+              { type: "image", src: "/placeholder-porto-plain.png" },
+              { type: "image", src: "/sample1.png" },
+              { type: "image", src: "/placeholder-porto-plain.png" },
+              {
+                type: "video",
+                src: "https://www.youtube.com/embed/u31qwQUeGuM",
+              },
+            ]}
+            progressPercentage={50}
+            category={portoType}
+          />
+
         </div>
       </div>
     </div>

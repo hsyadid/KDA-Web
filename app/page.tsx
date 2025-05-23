@@ -2,16 +2,48 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useTransform, useScroll } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import CardLeft from "@/components/CardLeft";
 import CardRight from "@/components/CardRight";
 import CardFront from "@/components/CardFront";
+import { cards, CardType } from "./data/cards";
 
 export default function Home() {
   const targetRef = useRef<HTMLDivElement | null>(null);
+  const portfolioRef = useRef<HTMLDivElement | null>(null);
+  const [showButton, setShowButton] = useState(false);
   const { scrollYProgress } = useScroll({
     target: targetRef,
   });
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        // Show button when portfolio section is in view
+        if (entry.intersectionRatio > 0) {
+          setShowButton(true);
+        } else {
+          setShowButton(false);
+        }
+      });
+    }, options);
+
+    if (portfolioRef.current) {
+      observer.observe(portfolioRef.current);
+    }
+
+    return () => {
+      if (portfolioRef.current) {
+        observer.unobserve(portfolioRef.current);
+      }
+    };
+  }, []);
 
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
   return (
@@ -19,7 +51,7 @@ export default function Home() {
       <div className="overflow-hidden">
 
         {/* Hero Section */}
-        <div className="w-screen h-screen relative overflow-hidden">
+        <div className="w-screen h-[90vh] md:h-screen relative overflow-hidden">
           {/* Background grid pattern */}
           <div className="absolute inset-0 w-screen h-[90%] brightness-200 pointer-events-none z-[1]">
             <Image 
@@ -58,31 +90,37 @@ export default function Home() {
           </div>
 
           {/* Hero Image */}
-          <div className="absolute -bottom-20 left-1/2 transform -translate-x-[45%] opacity-100 brightness-120 pointer-events-none z-[50]">
+          <div className="absolute -bottom-0 sm:bottom-0 md:-bottom-9 lg:-bottom-20 xl:-bottom-37 left-1/2 transform -translate-x-1/2 w-[120vh] sm:w-[150vh] md:w-[100vh] lg:w-[90vh] xl:w-[90vh] h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[90vh] xl:h-[100vh] opacity-100 brightness-110 pointer-events-none z-[50]">
             <Image 
-              src="/Hero_image.png" 
+              src="/HERO_image.png" 
               alt="Background Texture" 
-              width={0}
-              height={0}
-              sizes="210vw"
+              fill
+              sizes="(max-width: 640px) 150vh, (max-width: 768px) 150vh, (max-width: 1024px) 100vh, (max-width: 1280px) 90vh, 90vh"
               style={{ 
-                width: 'auto',
-                height: 'auto',
-                maxWidth: '100%'
+                objectFit: 'contain'
               }}
               priority
             />
           </div>
 
           {/* Main Content */}
-          <div className="container mx-auto px-6 pt-12 pb-64 relative z-10 flex flex-col justify-center gap-30 -mt-5">
-            <div className="text-center mb-24 ">
-              <h1 className="text-8xl font-bold font-syne mb-4 uppercase tracking-widest">PT KARYA DIMENSI</h1>
-              {/* <h1 className="text-8xl font-bold font-syne mb-4 uppercase tracking-widest"><span className="ml-28">NUG</span><span className="inline-block w-40"></span>RAHA</h1> */}
-              <h1 className="text-8xl font-bold font-syne mb-4 uppercase tracking-widest">NUGRAHA</h1>
+          <div className="container mx-auto px-6 pt-12 pb-64 relative z-10 flex flex-col justify-center items-center gap-30 -mt-5">
+            <div className="text-center mb-24 w-[120%] ">
+              {/* Mobile version - 3 lines */}
+              <div className="block sm:hidden mt-8 ">
+                <h1 className="text-[13vw] font-bold font-syne -mb-2 uppercase tracking-widest">PT</h1>
+                <h1 className="text-[11vw] font-bold font-syne -mb-2 uppercase tracking-widest">KARYA DIMENSI</h1>
+                <h1 className="text-[13vw] font-bold font-syne -mb-2 uppercase tracking-widest">NUGRAHA</h1>
+              </div>
+              
+              {/* Desktop version - 2 lines */}
+              <div className="hidden sm:block">
+                <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-syne mb-1 uppercase tracking-widest">PT KARYA DIMENSI</h1>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-syne mb-4 uppercase tracking-widest">NUGRAHA</h1>
+              </div>
             </div>
 
-            <div className="flex w-[90%]mx-auto justify-between">
+            <div className="hidden lg:flex lg:w-[120%] xl:w-[90%] justify-between ">
                 <Link 
                   href="/services/development" 
                   className=" border-2 font-semibold w-[250px] flex justify-center border-white/70 rounded-lg px-6 py-2 hover:bg-white/10 transition text-2xl"
@@ -102,7 +140,7 @@ export default function Home() {
         </div>
         
         {/* Services Section */}
-        <div className="w-screen h-screen relative overflow-hidden">
+        <div className="w-screen min-h-screen relative overflow-hidden">
           {/* Background grid pattern */}
           <div className="absolute inset-0 w-screen h-[90%] brightness-200 pointer-events-none z-[1]">
             <Image 
@@ -114,7 +152,6 @@ export default function Home() {
               className="w-screen h-screen"
             />
           </div>
-
           
           {/* Background texture */}
           <div className="absolute inset-0 w-full h-full opacity-10 brightness-200 pointer-events-none z-[3]">
@@ -150,16 +187,16 @@ export default function Home() {
           </div>
 
           {/* Main Content */}
-          <div className="container mx-auto px-6 py-12 pb-64 relative z-10 flex flex-col justify-center gap-5 ">
-            <div className="text-center mb-6 mt-10">
-              <h1 className="text-6xl font-bold font-syne uppercase text-left tracking-widest">Services</h1>
+          <div className="container mx-auto px-6 py-12 relative z-10 flex flex-col justify-center gap-5 items-center">
+            <div className="text-center md:text-left mb-6 mt-10">
+              <h1 className="text-5xl md:text-6xl font-bold font-syne uppercase tracking-widest">Services</h1>
             </div>
             
             {/* Services Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-20  w-full">
 
               {/* Infrastructure Card */}
-              <div className="bg-default backdrop-blur-sm px-8 pt-16 pb-50 relative overflow-hidden border rounded-2xl border-white">
+              <div className="bg-default w-full backdrop-blur-sm px-8 pt-16 pb-16 md:pb-50 relative overflow-hidden border rounded-2xl border-white h-[400px] md:h-auto">
 
                 <div className="absolute bottom-0 left-0 w-full opacity-60 size-full brightness-200 pointer-events-none -z-[1]">
                   <Image 
@@ -168,35 +205,35 @@ export default function Home() {
                       fill
                       style={{ objectFit: 'cover' }}
                       priority
-                    className="w-screen h-screen"
+                    className="w-full h-full"
                   />
                 </div>
 
-                  <div className="absolute right-15 top-10 brightness-150 w-[170px] h-[250px] pointer-events-none z-[2] -rotate-42">
+                  <div className="absolute right-5 md:right-15 md:top-10 top-35 brightness-150 w-[120px] md:w-[170px] h-[180px] md:h-[250px] pointer-events-none z-[2] -rotate-42">
                       <Image 
                         src="/hammer.png" 
                         alt="object" 
                         fill
-                        style={{ objectFit: 'cover' }}
+                        style={{ objectFit: 'contain' }}
                         priority
                       />
                   </div>
                     
-                    <div className="absolute right-52 -bottom-0 brightness-150 w-[270px] h-[210px] pointer-events-none z-[2] rotate-20">
+                    <div className="absolute right-20 md:right-52 -bottom-0 brightness-150 w-[200px] md:w-[270px] h-[150px] md:h-[210px] pointer-events-none z-[2] rotate-20">
                       <Image 
                         src="/bridge.png" 
                         alt="object" 
                         fill
-                        style={{ objectFit: 'cover' }}
+                        style={{ objectFit: 'contain' }}
                         priority
                       />
                   </div>
 
 
-                <div className="flex flex-col justify-between h-full">
+                <div className="flex flex-col justify-between h-full relative z-[3]">
                   <div>
                     <h2 className="text-3xl font-bold mb-4 text-white">Infrastructure</h2>
-                    <p className="mb-6 text-white/80">Lorem ipsum dolor sit amet</p>
+                    <p className="mb-6 text-white/80">Fondasi kuat untuk operasional bisnis</p>
                     <Link 
                       href="/services/infrastructure" 
                       className="inline-block border border-white/70 rounded-md px-6 py-2 text-sm font-syne tracking-widest hover:bg-white/10 transition"
@@ -204,14 +241,11 @@ export default function Home() {
                       More
                     </Link>
                   </div>
-
-           
-
                 </div>
               </div>
               
               {/* Development Card */}
-              <div className="bg-default backdrop-blur-sm px-8 pt-16 pb-50 relative overflow-hidden border rounded-2xl border-white">
+              <div className="bg-default backdrop-blur-sm px-8 pt-16 pb-16 md:pb-50 relative overflow-hidden border rounded-2xl border-white h-[400px] md:h-auto">
 
                 <div className="absolute bottom-0 left-0 w-full opacity-60 size-full brightness-200 pointer-events-none -z-[1]">
                   <Image 
@@ -220,37 +254,34 @@ export default function Home() {
                       fill
                       style={{ objectFit: 'cover' }}
                       priority
-                    className="w-screen h-screen"
+                    className="w-full h-full"
                   />
                 </div>
 
-                <div className="absolute right-10 top-10 brightness-150 w-[210px] h-[250px] pointer-events-none z-[2] -rotate-22">
+                <div className="absolute right-5 md:right-10 md:top-10 top-35 brightness-150 w-[150px] md:w-[210px] h-[180px] md:h-[250px] pointer-events-none z-[2] -rotate-22">
                   <Image 
                     src="/dokument.png" 
                     alt="object" 
                     fill
-                    style={{ objectFit: 'cover' }}
+                    style={{ objectFit: 'contain' }}
                     priority
                   />
                 </div>
                 
-                <div className="absolute left-25 -bottom-0 brightness-150 w-[210px] h-[250px] pointer-events-none z-[2] rotate-190">
+                <div className="absolute left-10 md:left-25 -bottom-0 brightness-150 w-[150px] md:w-[210px] h-[180px] md:h-[250px] pointer-events-none z-[2] rotate-190">
                   <Image 
                     src="/pencil.png" 
                     alt="object" 
                     fill
-                    style={{ objectFit: 'cover' }}
+                    style={{ objectFit: 'contain' }}
                     priority
                   />
                 </div>
 
-
-
-
-                <div className="flex flex-col justify-between h-full">
+                <div className="flex flex-col justify-between h-full relative z-[3]">
                   <div>
                     <h2 className="text-3xl font-bold mb-4 text-white">Development</h2>
-                    <p className="mb-6 text-white/80">Lorem ipsum dolor sit amet</p>
+                    <p className="mb-6 text-white/80">Solusi inovatif untuk kemajuan teknologi</p>
                     <Link 
                       href="/services/infrastructure" 
                       className="inline-block border border-white/70 rounded-md px-6 py-2 text-sm font-syne tracking-widest hover:bg-white/10 transition"
@@ -258,9 +289,6 @@ export default function Home() {
                       More
                     </Link>
                   </div>
-
-           
-
                 </div>
               </div>
           </div>
@@ -271,9 +299,11 @@ export default function Home() {
 
       </div>
     
-      <section ref={targetRef} className="relative h-[300vh] gradient_bg_sticky_container ">
+      {/* Desktop Recent Work Section */}
+      <section ref={targetRef} className="relative h-[300vh] gradient_bg_sticky_container lg:block hidden">
         <div className="sticky top-0 flex h-screen items-center overflow-hidden">
           <motion.div style={{ x }} className="flex gap-30 gradient_bg_sticky h-full justify-center items-center">
+            {/* Desktop content */}
 
             {/* Background texture */}
             <div className="absolute inset-0 w-full h-full opacity-15 brightness-200 pointer-events-none z-[3]">
@@ -287,9 +317,7 @@ export default function Home() {
               />
             </div>
 
-
-
-            <div className="mb-10 md:mb-0 mr-20  ml-20">
+            <div className="mb-10 md:mb-0 mr-20 ml-20">
               <h1 className="text-6xl md:text-7xl font-bold font-syne text-white leading-tight">
                 OUR<br />
                 RECENT<br />
@@ -309,37 +337,80 @@ export default function Home() {
               </div>
             </div>
             
-              <div className="col-span-1 row-span-1 ">
-                <CardFront card={cards[0]}/>
-              </div>
-              <div className="col-span-1 row-span-1 -mt-50">
-                <CardLeft card={cards[1]}/>
-              </div>
-              <div className="col-span-1 row-span-1 mt-50">
-                <CardRight card={cards[2]}/>
-              </div>
-              <div className="col-span-1 row-span-1 -mt-10">
-                <CardFront card={cards[3]}/>
-              </div>
-              <div className="col-span-1 row-span-1 mt-50">
-                <CardRight card={cards[4]}/>
-              </div>
-              <div className="col-span-1 row-span-1 -mt-50">
-                <CardLeft card={cards[4]}/>
-              </div>
+            <div className="col-span-1 row-span-1">
+              <CardFront card={cards[0]}/>
+            </div>
+            <div className="col-span-1 row-span-1 -mt-50">
+              <CardLeft card={cards[1]}/>
+            </div>
+            <div className="col-span-1 row-span-1 mt-50">
+              <CardRight card={cards[2]}/>
+            </div>
+            <div className="col-span-1 row-span-1 -mt-10">
+              <CardFront card={cards[3]}/>
+            </div>
+            <div className="col-span-1 row-span-1 mt-50">
+              <CardRight card={cards[4]}/>
+            </div>
+            <div className="col-span-1 row-span-1 -mt-50">
+              <CardLeft card={cards[4]}/>
+            </div>
 
             <div className="mt-8">
               <Link 
                 href="/portfolio" 
-                className=" ml-20 mr-50 inline-flex items-center justify-center border-2 border-white/70 rounded-[15px] px-8 py-3 hover:bg-white/10 transition w-[280px] text-white font-bold"
+                className="ml-20 mr-50 inline-flex items-center justify-center border-2 border-white/70 rounded-[15px] px-8 py-3 hover:bg-white/10 transition w-[280px] text-white font-bold"
               >
                 View Full Portfolio
               </Link>
             </div>
           </motion.div>
+        </div>
+      </section>
 
+      {/* Mobile Recent Work Section */}
+      <section ref={portfolioRef} className="relative gradient_bg_sticky_container lg:hidden block py-20">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h1 className="text-7xl font-bold font-syne text-white leading-tight">
+              OUR<br />
+              RECENT<br />
+              WORK
+            </h1>
+          </div>
 
+          <div className="flex flex-col gap-16 mb-20">
+            <div className="w-full flex justify-center">
+              <CardFront card={cards[0]}/>
+            </div>
+            <div className="w-full flex justify-center translate-x-5">
+              <CardLeft card={cards[1]}/>
+            </div>
+            <div className="w-full flex justify-center -translate-x-5">
+              <CardRight card={cards[2]}/>
+            </div>
+            <div className="w-full flex justify-center">
+              <CardFront card={cards[3]}/>
+            </div>
+            <div className="w-full flex justify-center -translate-x-5">
+              <CardRight card={cards[4]}/>
+            </div>
+            <div className="w-full flex justify-center translate-x-5">
+              <CardLeft card={cards[4]}/>
+            </div>
+          </div>
 
+          {/* Sticky Button Container */}
+          <div className={`fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent backdrop-blur-sm transition-opacity duration-300 ${showButton ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+            <div className="container mx-auto flex justify-center">
+              <Link 
+                href="/portfolio" 
+                className="inline-flex items-center justify-center border-2 border-white/70 rounded-[15px] px-8 py-3 hover:bg-white/10 transition w-[280px] text-white font-bold bg-black/50"
+              >
+                View Full Portfolio
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -399,30 +470,27 @@ export default function Home() {
       </section>
 
       {/* Contact Us Section */}
-      <section className="w-full py-20 relative gradient_bg">
-
+      <section className="w-full py-10 relative gradient_bg overflow-hidden">
         <div className="container mx-auto px-6 relative z-10">
-          
-          <div className="flex flex-col md:flex-row justify-between items-center gap-10">
-            <div className="text-white/90 max-w-xl">
-              <h2 className="text-5xl font-bold mb-5 uppercase tracking-widest font-syne">Contact Us</h2>
-              <p className="text-lg mb-8 font-syne">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="text-white/90 max-w-xl text-center md:text-left">
+              <h2 className="text-6xl md:text-7xl font-bold mb-3 uppercase tracking-widest font-syne">CONTACT US</h2>
+              <p className="text-xl mb-4 font-syne">
                 Get in touch with us for any inquiries about our services or to discuss your project needs.
               </p>
-  
             </div>
             
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               <Link 
                 href="mailto:info@karyadimensinugraha.com" 
-                className="border-2 font-semibold w-[200px] flex justify-center items-center bg-white text-default rounded-[15px] py-3  transition text-xl"
+                className="border-2 font-semibold w-[180px] flex justify-center items-center bg-white text-default rounded-[15px] py-3 transition text-xl"
               >
                 Email
               </Link>
               
               <Link 
                 href="https://wa.me/6212345678" 
-                className="border-2 font-semibold w-[200px] flex justify-center items-center  border-white/70 rounded-[15px]  hover:bg-white/10 transition text-xl"
+                className="border-2 font-semibold w-[180px] flex justify-center items-center border-white/70 rounded-[15px] hover:bg-white/10 transition text-xl"
               >
                 Whatsapp
               </Link>
@@ -435,66 +503,3 @@ export default function Home() {
     </>
   );
 }
-
-// const Card = ({ card }: { card: CardType }) => {
-//   return (
-//     <div
-//       key={card.id}
-//       className="group relative h-[450px] w-[450px] overflow-hidden bg-neutral-200"
-//     >
-//       <div
-//         style={{
-//           backgroundImage: `url(${card.url})`,
-//           backgroundSize: "cover",
-//           backgroundPosition: "center",
-//         }}
-//         className="absolute inset-0 z-0 transition-transform duration-300 group-hover:scale-110"
-//       ></div>
-//       <div className="absolute inset-0 z-10 grid place-content-center">
-//         <p className="bg-gradient-to-br from-white/20 to-white/0 p-8 text-6xl font-black uppercase text-white backdrop-blur-lg">
-//           {card.title}
-//         </p>
-//       </div>
-//     </div>
-//   );
-// };
-
-export type CardType = {
-  url: string;
-  title: string;
-  id: number;
-};
-
-const cards: CardType[] = [
-  {
-    url: "/test.png",
-    title: "Title 1",
-    id: 1,
-  },
-  {
-    url: "/test.png",
-    title: "Title 2",
-    id: 2,
-  },
-  {
-    url: "/test.png",
-    title: "Title 3",
-    id: 3,
-  },
-  {
-    url: "/test.png",
-    title: "Title 4",
-    id: 4,
-  },
-  {
-    url: "/test.png",
-    title: "Title 5",
-    id: 5,
-  }
-];
-
-
-
-
-
-

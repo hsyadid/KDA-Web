@@ -288,13 +288,11 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
             ###
             ###"
             mediaList={[
-              { type: "image", src: "/placeholder-porto-plain.png" },
-              { type: "image", src: "/images.jpeg" },
-              { type: "image", src: "/instagram.svg" },
-              {
-                type: "video",
-                src: "/placeholder-video.mp4",
-              },
+              { type: "image", src: "/modal1/1.jpeg" },
+              { type: "image", src: "/modal1/2.jpeg" },
+              { type: "image", src: "/modal1/3.jpeg" },
+              { type: "image", src: "/modal1/4.jpeg" },
+              { type: "image", src: "/modal1/5.jpeg" },
             ]}
             progressPercentage={50}
             category={portoType}
@@ -314,10 +312,10 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
               { type: "image", src: "/placeholder-porto-plain.png" },
               { type: "image", src: "/sample1.png" },
               { type: "image", src: "/placeholder-porto-plain.png" },
-              {
-                type: "video",
-                src: "https://www.youtube.com/embed/u31qwQUeGuM",
-              },
+              // {
+              //   type: "video",
+              //   src: "https://www.youtube.com/embed/u31qwQUeGuM",
+              // },
             ]}
             progressPercentage={50}
             category={portoType}
@@ -337,10 +335,10 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
               { type: "image", src: "/placeholder-porto-plain.png" },
               { type: "image", src: "/placeholder-porto-plain.png" },
               { type: "image", src: "/placeholder-porto-plain.png" },
-              {
-                type: "video",
-                src: "https://www.youtube.com/embed/u31qwQUeGuM",
-              },
+              // {
+              //   type: "video",
+              //   src: "https://www.youtube.com/embed/u31qwQUeGuM",
+              // },
             ]}
             progressPercentage={50}
             category={portoType}

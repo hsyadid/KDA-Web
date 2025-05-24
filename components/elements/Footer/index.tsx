@@ -39,7 +39,7 @@ export default function Footer() {
           {/* Navigation links - Desktop */}
           <div className="hidden lg:flex items-center space-x-10">
             <Link href="/services" className="font-syne hover:text-yellow transition-colors">Service</Link>
-            <Link href="/portfolio" className="font-syne hover:text-yellow transition-colors">Portfolio</Link>
+            <Link href="/services" className="font-syne hover:text-yellow transition-colors">Portfolio</Link>
             <Link href="/about" className="font-syne hover:text-yellow transition-colors">About Us</Link>
             <Link href="/contact" className="font-syne hover:text-yellow transition-colors">Contact Us</Link>
           </div>
@@ -47,7 +47,7 @@ export default function Footer() {
           {/* Navigation links - Mobile */}
           <div className="grid grid-cols-2 gap-6 lg:hidden w-full max-w-[300px]">
             <Link href="/services" className="font-syne hover:text-yellow transition-colors text-center">Service</Link>
-            <Link href="/portfolio" className="font-syne hover:text-yellow transition-colors text-center">Portfolio</Link>
+            <Link href="/services" className="font-syne hover:text-yellow transition-colors text-center">Portfolio</Link>
             <Link href="/about" className="font-syne hover:text-yellow transition-colors text-center">About Us</Link>
             <Link href="/contact" className="font-syne hover:text-yellow transition-colors text-center">Contact Us</Link>
           </div>

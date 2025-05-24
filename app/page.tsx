@@ -270,7 +270,7 @@ export default function Home() {
                   />
                 </div>
                 
-                <div className="absolute left-10 md:left-25 -bottom-0 brightness-150 w-[150px] md:w-[210px] h-[180px] md:h-[250px] pointer-events-none z-[2] rotate-190">
+                <div className="absolute left-2 md:left-25 -bottom-0 brightness-150 w-[150px] md:w-[210px] h-[180px] md:h-[250px] pointer-events-none z-[2] rotate-190">
                   <Image 
                     src="/pencil.png" 
                     alt="object" 

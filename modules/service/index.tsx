@@ -79,7 +79,7 @@ export default function Services() {
                 <p className="mb-4 sm:mb-5 md:mb-6 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">Fondasi kuat untuk operasional bisnis</p>
               </div>
               <Link 
-                href="/services/infrastructure" 
+                href="/porto-infra" 
                 className="border w-fit sm:w-[200px] md:w-[250px] flex justify-center border-white/70 rounded-lg px-4 sm:px-6 py-2 hover:bg-white/10 transition text-sm sm:text-base md:text-lg xl:text-xl backdrop-blur-sm bg-black/30"
               >
                 View Portfolio
@@ -141,7 +141,7 @@ export default function Services() {
                 <p className="mb-4 sm:mb-5 md:mb-6 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">Solusi inovatif untuk kemajuan teknologi</p>
               </div>
               <Link 
-                href="/services/development" 
+                href="/porto-dev" 
                 className="border w-fit sm:w-[200px] md:w-[250px] flex justify-center border-white/70 rounded-lg px-4 sm:px-6 py-2 hover:bg-white/10 transition text-sm sm:text-base md:text-lg xl:text-xl backdrop-blur-sm bg-black/30 md:ml-auto"
               >
                 View Portfolio

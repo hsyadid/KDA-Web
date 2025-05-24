@@ -47,8 +47,8 @@ export default function VisiMisi() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 sm:mb-20 py-8 sm:py-20">
           <div className="relative h-[250px] sm:h-[300px] lg:h-[400px] w-full sm:w-[130%] overflow-hidden sm:ml-[-25%] rounded-[22px] order-2 lg:order-1">
             <Image 
-              src="/test.png" 
-              alt="Office Building" 
+              src="/modal1/1.jpeg" 
+              alt="Company Vision" 
               fill
               style={{ objectFit: 'cover' }}
               className="rounded-lg"
@@ -81,25 +81,25 @@ export default function VisiMisi() {
           </div>
           
           <div className="order-1 lg:order-2 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 py-8 sm:py-12 lg:py-20">
-            <div className="bg-white/10 rounded-lg p-4 flex items-center justify-center h-[300px] sm:h-[400px] lg:h-[500px] transition-all duration-300 hover:bg-white/20">
-              <div className="relative w-12 sm:w-16 h-12 sm:h-16">
-                <Image 
-                  src="/play-button.svg" 
-                  alt="Play Video" 
-                  fill
-                  style={{ objectFit: 'contain' }}
-                />
-              </div>
+            <div className="bg-white/10 rounded-lg p-4 flex items-center justify-center h-[300px] sm:h-[400px] lg:h-[500px] transition-all duration-300 hover:bg-white/20 relative overflow-hidden">
+              <Image 
+                src="/modal2/1.jpeg" 
+                alt="Company Mission" 
+                fill
+                style={{ objectFit: 'cover' }}
+                className="rounded-lg"
+              />
+  
             </div>
-            <div className="bg-white/10 rounded-lg p-4 flex items-center justify-center h-[300px] sm:h-[400px] lg:h-[500px] transition-all duration-300 hover:bg-white/20">
-              <div className="relative w-12 sm:w-16 h-12 sm:h-16">
-                <Image 
-                  src="/play-button.svg" 
-                  alt="Play Video" 
-                  fill
-                  style={{ objectFit: 'contain' }}
-                />
-              </div>
+            <div className="bg-white/10 rounded-lg p-4 flex items-center justify-center h-[300px] sm:h-[400px] lg:h-[500px] transition-all duration-300 hover:bg-white/20 relative overflow-hidden">
+              <Image 
+                src="/modal5/1.png" 
+                alt="Company Mission" 
+                fill
+                style={{ objectFit: 'cover' }}
+                className="rounded-lg"
+              />
+             
             </div>
           </div>
         </div>

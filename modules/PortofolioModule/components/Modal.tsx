@@ -11,6 +11,7 @@ const roboto = Roboto({ subsets: ["latin"] });
 type MediaItem = {
   type: string;
   src: string;
+  progress?: number; // Add progress for each media item
 };
 
 type ModalProps = {
@@ -82,26 +83,26 @@ const Modal = ({
   return (
     <div className={`${inter.className}`}>
       <div
-        className={`w-full rounded-md border-2 border-white/50 p-5 shadow-white hover:cursor-pointer`}
+        className={`w-full rounded-md border-2 border-white/50 p-5 shadow-white hover:cursor-pointer  `}
         style={{ boxShadow: "inset 0 0 10px rgba(255, 255, 255, 0.2)" }}
         onClick={() => setIsModalOpen(!isModalOpen)}
       >
         <div className="text-white lg:space-y-3">
-          <p className="lg:text-5xl max-md:text-xl text-2xl font-bold">
+          <p className="lg:text-4xl max-md:text-sm font-bold  md:font-bold">
             {title}
           </p>
-          <p className="lg:text-3xl max-md:text-md text-xl">
+          <p className="lg:text-xl max-md:text-[10px] text-sm font-light">
             {shortDescription}
           </p>
         </div>
-        <div className="w-full flex h-full items-center justify-center">
+        <div className={`w-full flex h-full items-center justify-center pt-2 ${imageHeight ? 'h-[500px]' : 'h-[250px]'}`}>
           <Image
             src={mediaList[0]?.src || "/placeholder-porto-plain.png"}
             alt={title}
-            width={653.62}
+            width={648.62}
             height={56.4}
-            className={`rounded-md md:mt-8 ${
-              imageHeight && "lg:h-96"
+            className={`rounded-md ${
+              imageHeight ? 'h-full' : 'h-[250px]'
             } w-full object-cover`}
           />
         </div>
@@ -113,16 +114,16 @@ const Modal = ({
           isModalOpen ? "" : "hidden"
         } fixed flex flex-col max-xl:hidden  justify-center items-center w-full h-full bg-black/30 backdrop-blur-lg inset-0 z-50`}
       >
-        <div className="flex flex-row justify-center items-center">
-          <div className="flex flex-col space-y-9 w-[691px]">
+        <div className="flex flex-row justify-center items-center ml-15">
+          <div className="flex flex-col space-y-9 w-[691px] ">
             <button
               className="mb-6 hover:cursor-pointer"
               onClick={() => setIsModalOpen(!isModalOpen)}
             >
-              <Image src="/arrow.svg" alt="Arrow Icon" width={53} height={50} />
+              <Image src="/arrow.svg" alt="Arrow Icon" width={48} height={48} />
             </button>
 
-            <div className="w-full  h-[410px] relative z-20 lg:p-5 ">
+            <div className="w-[90%]  h-[320px] relative z-20 lg:p-5 ">
               {mediaList[currentIndex].type === "image" ? (
                 <Image
                   src={mainImage}
@@ -142,13 +143,15 @@ const Modal = ({
               )}
 
               <div className="flex absolute inset-0 z-30 justify-end text-end items-end  pr-8 pb-8">
-                <p className="font-white font-bold text-xl text-white">
-                  {progressPercentage}% <br /> Work in Progress
-                </p>
+                {category !== "Development" && (
+                  <p className="font-white font-bold text-xl text-white">
+                    {mediaList[currentIndex].progress || progressPercentage}% <br /> Work in Progress
+                  </p>
+                )}
               </div>
             </div>
 
-            <div className="w-[691px] relative space-x-4 justify-center z-5 flex h-[138px]">
+            <div className="w-[620px] relative space-x-4 justify-center z-5 flex h-[138px]">
               <Swiper
                 slidesPerView={4}
                 ref={swiperRef}
@@ -169,9 +172,14 @@ const Modal = ({
                             setCurrentIndex(index);
                           }}
                         />
+                        {category !== "Development" && (
+                          <div className="absolute bottom-0 right-0 p-2 bg-black/50 text-white text-sm rounded-bl-lg">
+                            {mediaSource.progress || progressPercentage}%
+                          </div>
+                        )}
                       </div>
                     ) : (
-                      <div className="relative w-full  h-full">
+                      <div className="relative w-full h-full">
                         <video
                           src={mediaSource.src}
                           className="w-full h-full object-cover rounded-lg hover:cursor-pointer"
@@ -180,6 +188,11 @@ const Modal = ({
                             setCurrentIndex(index);
                           }}
                         />
+                        {category !== "Development" && (
+                          <div className="absolute bottom-0 right-0 p-2 bg-black/50 text-white text-sm rounded-bl-lg">
+                            {mediaSource.progress || progressPercentage}%
+                          </div>
+                        )}
                       </div>
                     )}
                   </SwiperSlide>
@@ -189,16 +202,16 @@ const Modal = ({
           </div>
 
           <div
-            className="space-y-5 border-1 border-white/50 lg:p-5 shadow-white lg:px-6 lg:w-[597px] lg:h-[731px] w-fit bg-[#082C2A] -translate-x-10 rounded-xl z-0"
+            className="space-y-5 border-1 border-white/50 lg:p-5 shadow-white lg:px-6 lg:w-[500px] lg:h-[620px] w-fit bg-[#082C2A] -translate-x-25 rounded-xl z-0"
             style={{ boxShadow: "inset 0 0 10px rgba(255, 255, 255, 0.2)" }}
           >
-            <div className="px-26 py-20">
+            <div className="px-15 py-15">
               <p className="text-[#FFBD59] text-[18px] font-bold text-start">
                 <span className="underline">PORTOFOLIO</span> /{" "}
                 <span className="underline">{category.toUpperCase()}</span>
               </p>
               <br />
-              <p className="font-bold text-white text-5xl">
+              <p className="font-bold text-white text-4xl">
                 KONSTRUKSI
                 <br />
                 {title}
@@ -214,7 +227,7 @@ const Modal = ({
       <div
         className={`${
           isModalOpen ? "" : "hidden"
-        } fixed flex min-xl:hidden justify-center px-9 items-center h-full bg-black/60 inset-0 z-50 `}
+        } fixed flex min-xl:hidden justify-center px-9 items-center h-full bg-black/60 inset-0 z-[1000] `}
       >
         <div
           className="border-1  px-6 pb-8  border-white/50 lg:p-5 shadow-white w-fit bg-[#082C2A] rounded-xl z-0"
@@ -231,7 +244,7 @@ const Modal = ({
               />
             </button>
           </div>
-          <div>
+          <div className="flex flex-col items-center justify-center w-full">
             <div className="min-md:w-full w-[300px] relative min-lg:h-[335px] min-md:h-[400px] h-[150px]">
               {mediaList[currentIndex].type === "image" ? (
                 <Image
@@ -249,9 +262,11 @@ const Modal = ({
                 />
               )}
               <div className="flex absolute inset-0 z-30 justify-end text-end items-end  pr-4 pb-4">
-                <p className="font-white font-bold md:text-lg text-sm text-white">
-                  {progressPercentage}% <br /> Work in Progress
-                </p>
+                {category !== "Development" && (
+                  <p className="font-white font-bold md:text-lg text-sm text-white">
+                    {mediaList[currentIndex].progress || progressPercentage}% <br /> Work in Progress
+                  </p>
+                )}
               </div>
             </div>
             <div className="flex flex-row  pt-3 md:w-full w-fit">
@@ -275,6 +290,11 @@ const Modal = ({
                             setMainImage(mainImage);
                           }}
                         />
+                        {category !== "Development" && (
+                          <div className="absolute bottom-0 right-0 p-2 bg-black/50 text-white text-sm rounded-bl-lg">
+                            {mediaSrc.progress || progressPercentage}%
+                          </div>
+                        )}
                       </div>
                     ) : (
                       <div className="relative md:h-40 h-20">
@@ -289,6 +309,11 @@ const Modal = ({
                             setMainImage(mainImage);
                           }}
                         />
+                        {category !== "Development" && (
+                          <div className="absolute bottom-0 right-0 p-2 bg-black/50 text-white text-sm rounded-bl-lg">
+                            {mediaSrc.progress || progressPercentage}%
+                          </div>
+                        )}
                       </div>
                     )}
                   </SwiperSlide>

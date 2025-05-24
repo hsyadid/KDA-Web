@@ -75,16 +75,18 @@ export default function ContactPage() {
             
             <div className="flex gap-4">
               <Link 
-                href="/contact/email" 
+                href="mailto:karyanugraha.dimensi@gmail.com" 
                 className="bg-white font-syne text-default px-14 py-3 rounded-[15px] font-bold"
               >
                 Email
               </Link>
               <Link 
-                href="/contact/whatsapp" 
+                href="https://wa.me/6285219104300" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="border-2 border-white font-syne px-12 py-3 rounded-[15px] font-bold hover:bg-white/10 transition"
               >
-                Whatsapp
+                Whatsapp  
               </Link>
             </div>
           </div>

@@ -54,7 +54,7 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
     },
   ];
 
-  const imageList3 = Array.from({ length: 28 }, (_, i) => ({
+  const imageList3 = Array.from({ length: 3 }, (_, i) => ({
     type: "image",
     src: `/modal3/${i + 1}.jpeg`,
   }));
@@ -64,6 +64,7 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
   const imageList5 = Array.from({ length: 2 }, (_, i) => ({
     type: "image",
     src: `/modal5/${i + 1}.png`,
+    progress: i === 0 ? 45 : 60
   }));
 
   const mediaList5 = [
@@ -71,16 +72,19 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
     {
       type: "video",
       src: "modal5/1.mp4",
+      progress: 70
     },
     {
       type: "video",
       src: "modal5/2.mp4",
+      progress: 85
     },
   ];
 
   const imageList6 = Array.from({ length: 3 }, (_, i) => ({
     type: "image",
     src: `/modal6/${i + 1}.png`,
+    progress: i === 0 ? 30 : i === 1 ? 50 : 75
   }));
 
   const mediaList6 = [
@@ -88,20 +92,24 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
     {
       type: "video",
       src: "modal6/1.mp4",
+      progress: 40
     },
     {
       type: "video",
       src: "modal6/2.mp4",
+      progress: 65
     },
     {
       type: "video",
       src: "modal6/3.mp4",
+      progress: 80
     },
   ];
 
   const imageList7 = Array.from({ length: 3 }, (_, i) => ({
     type: "image",
     src: `/modal7/${i + 1}.png`,
+    progress: i === 0 ? 25 : i === 1 ? 40 : 65
   }));
 
   const mediaList7 = [
@@ -109,20 +117,24 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
     {
       type: "video",
       src: "modal7/1.mp4",
+      progress: 35
     },
     {
       type: "video",
       src: "modal7/2.mp4",
+      progress: 55
     },
     {
       type: "video",
       src: "modal7/3.mp4",
+      progress: 75
     },
   ];
 
   const imageList8 = Array.from({ length: 3 }, (_, i) => ({
     type: "image",
     src: `/modal8/${i + 1}.png`,
+    progress: i === 0 ? 35 : i === 1 ? 55 : 80
   }));
 
   const mediaList8 = [
@@ -130,14 +142,17 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
     {
       type: "video",
       src: "modal8/1.mp4",
+      progress: 45
     },
     {
       type: "video",
       src: "modal8/2.mp4",
+      progress: 60
     },
     {
       type: "video",
       src: "modal8/3.mp4",
+      progress: 90
     },
   ];
 
@@ -288,7 +303,7 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
             <p className="text-[#FFBD59] font-bold xl:text-2xl text-md ">
               {portoType}
             </p>
-            <p className="text-white xl:text-[3vw] text-4xl font-bold mt-4">
+            <p className="text-white xl:text-[2.7vw] text-4xl font-bold mt-4">
               {title}
             </p>
             <p className=" xl:text-xl text-lg  text-white mt-4 line-clamp-3 pr-20">
@@ -384,9 +399,9 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
       </div>
 
       {/* Mobile View */}
-      <div className="relative min-md:hidden w-full h-[300px]">
+      <div className="relative min-md:hidden w-full h-[450px] -mt-25">
         <Image
-          src="/placeholder-porto.png"
+          src={portoType === "Development" ? "/modal1/1.jpeg" : "/modal5/1.png"}
           alt="Sample Image"
           width={1000}
           height={1000}
@@ -396,7 +411,10 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
         <div className="absolute inset-0 flex flex-col text-center justify-center px-4">
           <p className="text-[#FFBD59] font-bold text-2xl">{portoType}</p>
           <p className="text-white text-3xl font-bold ">
-            Konstruksi Rumah ABCD
+            {portoType === "Development" 
+              ? "INNOPRENEURSHIP CENTRE MANDIRI IPB"
+              : "SMPN 7 TAMBUN"
+            }
           </p>
         </div>
       </div>
@@ -407,8 +425,10 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
           style={{ boxShadow: "inset 0 0 10px rgba(255, 255, 255, 0.2)" }}
         >
           <p className="text-[12px] text-white text-center ">
-            Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD
-            Konstruksi Rumah ABCD Konstruksi Rumah ABCD
+            {portoType === "Development"
+              ? "Mengembangkan solusi inovatif dan efisien yang mendukung pertumbuhan dan kemajuan teknologi melalui proses pengembangan terstruktur."
+              : "Membangun fondasi yang kuat untuk mendukung sistem dan operasi bisnis dengan sumber daya yang handal dan terkelola dengan baik."
+            }
           </p>
         </div>
       </div>
@@ -436,139 +456,104 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 xl:px-32  justify-center xl:gap-12 gap-5 pt-6 z-20">
+        <div className="grid grid-cols-2 auto-rows-auto justify-center xl:gap-12 gap-5 pt-6 z-20">
           {portoType === "Development" ? (
             <>
-              <Modal
-                imageHeight={false}
-                title="INNOPRENEURSHIP CENTRE MANDIRI IPB"
-                shortDescription="Short Desc"
-                longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
-            PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
-            ### : 123
-            ### :
-            ###
-            ###"
-
-                mediaList={mediaList1}
-                progressPercentage={50}
-                category={portoType}
-              />
-
+              <div className="row-span-1">
               <Modal
                 imageHeight={false}
                 title="KAI SERPONG"
-                shortDescription="Short Desc"
-                longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
-            PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
-            ### : 123
-            ### :
-            ###
-            ###"
+                shortDescription=""
+                longDescription="Pembangunan fasilitas dan infrastruktur untuk mendukung operasional transportasi di kawasan Serpong, meningkatkan aksesibilitas dan kenyamanan pengguna jasa kereta api."
                 mediaList={mediaList2}
                 progressPercentage={50}
                 category={portoType}
               />
+              </div>
+                <Modal
+                  imageHeight={true}
+                  title="INNOPRENEURSHIP CENTRE MANDIRI IPB"
+                  shortDescription=""
+                  longDescription="Pembangunan pusat inovasi dan kewirausahaan di IPB untuk mendukung pengembangan ide dan kolaborasi antar pelaku bisnis dan mahasiswa."
+                  mediaList={mediaList1}
+                  progressPercentage={50}
+                  category={portoType}
+                />
+
+<Modal
+                  imageHeight={true}
+                  title="PEMANCINGAN PASIR TANJUNG"
+                  shortDescription=""
+                  longDescription="Pembangunan area pemancingan di Pasir Tanjung yang dirancang untuk menyediakan fasilitas rekreasi dan hiburan bagi pengunjung, dengan fokus pada kenyamanan dan keindahan alam."
+                  mediaList={[
+                    { type: "image", src: "/modal4/1.png" },
+                    { type: "video", src: "/modal4/1.mp4" },
+                  ]}
+                  progressPercentage={50}
+                  category={portoType}
+                />
+
+
+              <div className=" row-span-3">
+                
               <Modal
                 imageHeight={false}
                 title="MANDIRI FLAT TASIKMALAYA"
-                shortDescription="Short Desc"
-                longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
-            PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
-            ### : 123
-            ### :
-            ###
-            ###"
+                shortDescription=""
+                longDescription="Pembangunan kompleks perumahan Mandiri Flat di Tasikmalaya, yang dirancang untuk menyediakan hunian vertikal yang nyaman dan terjangkau bagi masyarakat setempat."
                 mediaList={mediaList3}
                 progressPercentage={50}
                 category={portoType}
               />
-
-
-              <Modal
-                imageHeight={false}
-                title="PEMANCINGAN PASIR TANJUNG"
-                shortDescription="Short Desc"
-                longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
-
-            PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
-            ### : 123
-            ### :
-            ###
-            ###"
-                
-                mediaList={[
-                  { type: "image", src: "/modal4/1.png" },
-                  { type: "video", src: "/modal4/1.mp4" },
-                ]}
-                progressPercentage={50}
-                category={portoType}
-              />
+              </div>
             </>
           ) : (
             <>
               <Modal
                 imageHeight={false}
                 title="SMPN 7 TAMBUN"
-                shortDescription="Short Desc"
-                longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
-            PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
-            ### : 123
-            ### :
-            ###
-            ###"
+                shortDescription=""
+                longDescription="Pembangunan fasilitas sekolah SMPN 7 di Tambun untuk mendukung pendidikan dengan menyediakan ruang belajar yang modern dan nyaman bagi siswa dan tenaga pengajar."
                 mediaList={mediaList5}
                 progressPercentage={50}
                 category={portoType}
               />
 
-              <Modal
-                imageHeight={false}
-                title="STADION MINI BOJONG MANGU"
-                shortDescription="Short Desc"
-                longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
-            PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
-            ### : 123
-            ### :
-            ###
-            ###"
-                mediaList={mediaList6}
-                progressPercentage={50}
-                category={portoType}
-              />
+              <div className="row-span-2">
+                <Modal
+                  imageHeight={true}
+                  title="STADION MINI BOJONG MANGU"
+                  shortDescription=""
+                  longDescription="Pembangunan stadion mini di Bojong Mangu untuk meningkatkan fasilitas olahraga dan mendukung kegiatan olahraga lokal dengan fasilitas yang memadai dan akses mudah bagi masyarakat."
+                  mediaList={mediaList6}
+                  progressPercentage={50}
+                  category={portoType}
+                />
+              </div>
 
-              <Modal
-                imageHeight={false}
-                title="UPTD PPA"
-                shortDescription="Short Desc"
-                longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
-            PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
-            ### : 123
-            ### :
-            ###
-            ###"
-                mediaList={mediaList7}
-                progressPercentage={50}
-                category={portoType}
-              />
+              <div className="row-span-2">
+                <Modal
+                  imageHeight={true}
+                  title="UPTD PPA"
+                  shortDescription=""
+                  longDescription="Pembangunan Unit Pelaksana Teknis Daerah Perlindungan Perempuan dan Anak (UPTD PPA) untuk menyediakan fasilitas layanan yang mendukung perlindungan dan pemberdayaan perempuan serta anak di daerah."
+                  mediaList={mediaList7}
+                  progressPercentage={50}
+                  category={portoType}
+                />
+              </div>
 
               <Modal
                 imageHeight={false}
                 title="WORKSHOP BINAMARGA"
                 shortDescription="Short Desc"
-                longDescription="PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi. 
-            PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang melayani segala macam kebutuhan konstruksi bangunan di Kabupaten Bekasi. Perusahaan kami selalu berusaha memberikan jasa kontraktor terbaik dan terpercaya di Kabupaten Bekasi.
-            ### : 123
-            ### :
-            ###
-            ###"
+                longDescription="Pembangunan fasilitas workshop Binamarga untuk mendukung pemeliharaan dan perbaikan infrastruktur jalan, serta meningkatkan kualitas pelayanan dan kinerja sektor transportasi."
                 mediaList={mediaList8}
                 progressPercentage={50}
                 category={portoType}
               />
             </>
           )}
-
         </div>
       </div>
     </div>

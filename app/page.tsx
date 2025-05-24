@@ -122,17 +122,17 @@ export default function Home() {
 
             <div className="hidden lg:flex lg:w-[120%] xl:w-[90%] justify-between ">
                 <Link 
-                  href="/services/development" 
+                  href="/services" 
                   className=" border-2 font-semibold w-[250px] flex justify-center border-white/70 rounded-lg px-6 py-2 hover:bg-white/10 transition text-2xl"
                 >
-                  View Service
+                  Services
                 </Link>
 
                 <Link 
-                  href="/services/development" 
+                  href="/contact" 
                   className=" border-2 font-semibold w-[250px] flex justify-center border-white/70 rounded-lg px-6 py-2 hover:bg-white/10 transition text-2xl"
                 >
-                  View Portfolio
+                  Contact Us
                 </Link>
             </div>
           </div>
@@ -235,7 +235,7 @@ export default function Home() {
                     <h2 className="text-3xl font-bold mb-4 text-white">Infrastructure</h2>
                     <p className="mb-6 text-white/80">Fondasi kuat untuk operasional bisnis</p>
                     <Link 
-                      href="/services/infrastructure" 
+                      href="/porto-infra" 
                       className="inline-block border border-white/70 rounded-md px-6 py-2 text-sm font-syne tracking-widest hover:bg-white/10 transition"
                     >
                       More
@@ -283,7 +283,7 @@ export default function Home() {
                     <h2 className="text-3xl font-bold mb-4 text-white">Development</h2>
                     <p className="mb-6 text-white/80">Solusi inovatif untuk kemajuan teknologi</p>
                     <Link 
-                      href="/services/infrastructure" 
+                      href="/porto-dev" 
                       className="inline-block border border-white/70 rounded-md px-6 py-2 text-sm font-syne tracking-widest hover:bg-white/10 transition"
                     >
                       More
@@ -326,7 +326,7 @@ export default function Home() {
               
               <div className="mt-8">
                 <Link 
-                  href="/portfolio" 
+                  href="/services" 
                   className="inline-flex items-center border border-white/70 rounded-full px-6 py-2 hover:bg-white/10 transition"
                 >
                   <span className="mr-2">View All</span>
@@ -358,7 +358,7 @@ export default function Home() {
 
             <div className="mt-8">
               <Link 
-                href="/portfolio" 
+                href="/services" 
                 className="ml-20 mr-50 inline-flex items-center justify-center border-2 border-white/70 rounded-[15px] px-8 py-3 hover:bg-white/10 transition w-[280px] text-white font-bold"
               >
                 View Full Portfolio
@@ -404,7 +404,7 @@ export default function Home() {
           <div className={`fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent backdrop-blur-sm transition-opacity duration-300 ${showButton ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
             <div className="container mx-auto flex justify-center">
               <Link 
-                href="/portfolio" 
+                href="/services" 
                 className="inline-flex items-center justify-center border-2 border-white/70 rounded-[15px] px-8 py-3 hover:bg-white/10 transition w-[280px] text-white font-bold bg-black/50"
               >
                 View Full Portfolio
@@ -482,14 +482,16 @@ export default function Home() {
             
             <div className="flex gap-3">
               <Link 
-                href="mailto:info@karyadimensinugraha.com" 
+                href="mailto:karyanugraha.dimensi@gmail.com" 
                 className="border-2 font-semibold w-[180px] flex justify-center items-center bg-white text-default rounded-[15px] py-3 transition text-xl"
               >
                 Email
               </Link>
               
               <Link 
-                href="https://wa.me/6212345678" 
+                href="https://wa.me/6285219104300" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="border-2 font-semibold w-[180px] flex justify-center items-center border-white/70 rounded-[15px] hover:bg-white/10 transition text-xl"
               >
                 Whatsapp

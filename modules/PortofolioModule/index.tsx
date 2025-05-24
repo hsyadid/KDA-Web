@@ -171,7 +171,7 @@ const PortofolioModule = ({ portoType }: PortofolioModuleProps) => {
                 {slides.map((slide, index) => (
                   <SwiperSlide key={index}>
                     <div
-                      className={`w-full relative min-xl:h-[320px] h-[200px] ${
+                      className={`w-full relative h-[320px] ${
                         index % 2 === 0 ? "items-end" : "items-start"
                       } flex`}
                     >

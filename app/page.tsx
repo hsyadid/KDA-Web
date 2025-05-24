@@ -94,13 +94,16 @@ export default function Home() {
           <div className="absolute -bottom-0 sm:bottom-0 md:-bottom-9 lg:-bottom-20 xl:-bottom-37 left-1/2 transform -translate-x-1/2 w-[120vh] sm:w-[150vh] md:w-[100vh] lg:w-[90vh] xl:w-[90vh] h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[90vh] xl:h-[100vh] opacity-100 brightness-110 pointer-events-none z-[50]">
             <Image 
               src="/HERO_image.png" 
-              alt="Background Texture" 
+              alt="Hero Image"
               fill
               sizes="(max-width: 640px) 150vh, (max-width: 768px) 150vh, (max-width: 1024px) 100vh, (max-width: 1280px) 90vh, 90vh"
               style={{ 
                 objectFit: 'contain'
               }}
               priority
+              quality={100}
+              loading="eager"
+              unoptimized={true}
             />
           </div>
 

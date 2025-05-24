@@ -43,7 +43,7 @@ const AboutUsModule = () => {
 
   return (
     <>
-      <div className={`${roboto.className} w-screen relative overflow-hidden`}>
+      <div className={`font-inter w-screen relative overflow-hidden`}>
         {/* Shadow Images - Fixed z-index and positioning */}
 
         <Image
@@ -82,7 +82,7 @@ const AboutUsModule = () => {
               <p className="text-white text-4xl xl:text-[80px] font-bold">
                 ABOUT US
               </p>
-              <p className="text-white max-lg:text-sm text-md xl:text-2xl xl:pr-20">
+              <p className="text-white max-lg:text-sm text-md xl:text-2xl xl:pr-20 font-inter font-medium">
                 <br />
                 PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang
                 melayani segala macam kebutuhan konstruksi bangunan di Kabupaten
@@ -115,7 +115,7 @@ const AboutUsModule = () => {
           {/* Vertical Mobile View */}
           <div className="md:hidden flex flex-col items-center text-center w-full pt-12 relative z-10 px-4 pb-4">
             <p className="text-white text-4xl font-bold">ABOUT US</p>
-            <p className="text-white text-sm">
+            <p className="text-white text-sm font-inter">
               <br />
               PT Karya Dimensi Nugraha adalah perusahaan kontraktor yang
               melayani segala macam kebutuhan konstruksi bangunan di Kabupaten
@@ -201,7 +201,7 @@ const AboutUsModule = () => {
           />
 
           <div className="text-white px-6 md:px-20 text-center pb-6 max-2xl:text-sm text-2xl mt-12">
-            <p>
+            <p className="font-inter font-medium">
               Jasa konstruksi kami bisa mengerjakan semua pembangunan yang
               detail dan terperinci. Anda dapat membawa desain bangunan sendiri
               atau menggunakan team arsitek kami dan kami akan membangunnya.

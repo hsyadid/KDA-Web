@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Services() {
   return (
-    <div className="bg-default text-white min-h-screen relative overflow-hidden pt-20 pb-32">
+    <div className="bg-default text-white min-h-screen relative overflow-hidden pt-12 sm:pt-16 md:pt-20 pb-20 sm:pb-32">
 
       {/* Background grid pattern */}
       <div className="absolute inset-0 w-screen h-[90%] brightness-150 pointer-events-none z-[1]">
@@ -31,70 +31,64 @@ export default function Services() {
       </div>
       
       {/* Main content */}
-      <div className="container mx-auto px-6 pt-12 pb-64 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 pt-8 sm:pt-12 pb-32 sm:pb-64 relative z-10">
         {/* Header */}
-        <div className="text-center mb-24">
-          <h1 className="text-7xl font-bold mb-4 uppercase tracking-wider">SERVICES</h1>
-          <p className="max-w-5xl mx-auto text-lg">
+        <div className="text-center mb-16 sm:mb-20 md:mb-24">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-4 uppercase tracking-wider">SERVICES</h1>
+          <p className="max-w-5xl mx-auto text-base sm:text-lg px-2 sm:px-0">
             Memberikan standar kerja secara efisien, efektif dan terorganisir secara berkelanjutan melalui komitmen GCG (Good Corporate Governance) dan CSR (Corporate Social Responsibility)
           </p>
         </div>
         
         {/* Infrastructure Service */}
-        <div className="bg-default backdrop-blur-sm shadow-md rounded-lg p-8 mb-12 w-[90%] mx-auto h-[450px] relative overflow-hidden">
-
-            <div className="absolute left-0 bottom-0 brightness-150 w-[700px] h-[500px] pointer-events-none z-[2]">
-              <Image 
-                src="/gradient_left.png" 
-                alt="Background gradient" 
-                fill
-                style={{ objectFit: 'cover' }}
-                priority
-              />
+        <div className="bg-default backdrop-blur-sm shadow-md rounded-lg p-6 sm:p-8 md:p-10 mb-8 sm:mb-12 w-full md:w-[90%] mx-auto h-[300px] sm:h-[350px] md:h-[450px] relative overflow-hidden">
+          <div className="absolute left-0 bottom-0 brightness-150 w-[300px] sm:w-[500px] md:w-[700px] h-[250px] sm:h-[350px] md:h-[500px] pointer-events-none z-[2]">
+            <Image 
+              src="/gradient_left.png" 
+              alt="Background gradient" 
+              fill
+              style={{ objectFit: 'cover' }}
+              priority
+            />
           </div>
 
-          <div className="absolute right-15 top-10 brightness-150 w-[200px] h-[300px] pointer-events-none z-[2] -rotate-42">
-              <Image 
-                src="/hammer.png" 
-                alt="object" 
-                fill
-                style={{ objectFit: 'cover' }}
-                priority
-              />
+          <div className="absolute right-5 sm:right-8 md:right-15 top-15 sm:top-10 brightness-150 w-[80px] sm:w-[120px] md:w-[200px] h-[120px] sm:h-[180px] md:h-[300px] pointer-events-none z-[2] -rotate-42">
+            <Image 
+              src="/hammer.png" 
+              alt="object" 
+              fill
+              style={{ objectFit: 'cover' }}
+              priority
+            />
           </div>
             
-            <div className="absolute right-52 -bottom-0 brightness-150 w-[330px] h-[250px] pointer-events-none z-[2] rotate-20">
-              <Image 
-                src="/bridge.png" 
-                alt="object" 
-                fill
-                style={{ objectFit: 'cover' }}
-                priority
-              />
+          <div className="absolute right-10 sm:right-32 md:right-52 bottom-10 brightness-150 w-[130px] sm:w-[200px] md:w-[330px] h-[100px] sm:h-[150px] md:h-[250px] pointer-events-none z-[2] rotate-20">
+            <Image 
+              src="/bridge.png" 
+              alt="object" 
+              fill
+              style={{ objectFit: 'cover' }}
+              priority
+            />
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center ">
-            <div className="md:w-1/2 mb-8 md:mb-0 z-50 flex flex-col justify-between h-[300px] items-start">
-              <div>
-                <h2 className="text-6xl font-bold mb-4">Infrastructure</h2>
-                <p className="mb-6 text-xl">Lorem ipsum dolor sit amet</p>
+          <div className="flex flex-col md:flex-row justify-between items-center h-full">
+            <div className="w-full md:w-1/2 mb-4 md:mb-0 z-50 flex flex-col justify-between h-full">
+              <div className="flex flex-col h-full justify-center">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-3 md:mb-4">Infrastructure</h2>
+                <p className="mb-4 sm:mb-5 md:mb-6 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">Fondasi kuat untuk operasional bisnis</p>
               </div>
               <Link 
                 href="/services/infrastructure" 
-                className="border w-[250px] flex justify-center border-white/70 rounded-lg px-6 py-2 hover:bg-white/10 transition text-2xl"
+                className="border w-fit sm:w-[200px] md:w-[250px] flex justify-center border-white/70 rounded-lg px-4 sm:px-6 py-2 hover:bg-white/10 transition text-sm sm:text-base md:text-lg xl:text-xl backdrop-blur-sm bg-black/30"
               >
                 View Portfolio
               </Link>
             </div>
-            <div className="md:w-1/2 relative h-[200px]">
+            <div className="hidden md:block md:w-1/2 relative h-full">
               <div className="absolute right-0 top-0 w-full h-full">
                 <div className="relative w-full h-full">
-                  {/* <Image
-                    src="/shapes-right.png"
-                    alt="Infrastructure Shapes"
-                    fill
-                    style={{ objectFit: 'contain', objectPosition: 'right' }}
-                  /> */}
+                  {/* Empty space for decorative elements */}
                 </div>
               </div>
             </div>
@@ -102,59 +96,53 @@ export default function Services() {
         </div>
         
         {/* Development Service */}
-        <div className="bg-default backdrop-blur-sm shadow-md rounded-lg p-8 mb-12 w-[90%] mx-auto h-[450px]  relative overflow-hidden">
-
-          <div className="absolute right-0 bottom-0 brightness-150 w-[700px] h-[500px] pointer-events-none z-[2]">
-              <Image 
-                src="/gradient_right.png" 
-                alt="Background Texture" 
-                fill
-                style={{ objectFit: 'cover' }}
-                priority
-              />
+        <div className="bg-default backdrop-blur-sm shadow-md rounded-lg p-6 sm:p-8 md:p-10 mb-8 sm:mb-12 w-full md:w-[90%] mx-auto h-[300px] sm:h-[350px] md:h-[450px] relative overflow-hidden">
+          <div className="absolute right-0 bottom-0 brightness-150 w-[300px] sm:w-[500px] md:w-[700px] h-[250px] sm:h-[350px] md:h-[500px] pointer-events-none z-[2]">
+            <Image 
+              src="/gradient_right.png" 
+              alt="Background Texture" 
+              fill
+              style={{ objectFit: 'cover' }}
+              priority
+            />
           </div>
 
-            <div className="absolute left-2 top-10 brightness-150 w-[220px] h-[300px] pointer-events-none z-[2] -rotate-22">
-              <Image 
-                src="/dokument.png" 
-                alt="object" 
-                fill
-                style={{ objectFit: 'cover' }}
-                priority
-              />
+          <div className="absolute left-6 sm:left-2 top-20 sm:top-10 brightness-150 w-[90px] sm:w-[140px] md:w-[220px] h-[120px] sm:h-[180px] md:h-[300px] pointer-events-none z-[2] -rotate-22">
+            <Image 
+              src="/dokument.png" 
+              alt="object" 
+              fill
+              style={{ objectFit: 'cover' }}
+              priority
+            />
           </div>
             
-            <div className="absolute left-55 -bottom-0 brightness-150 w-[250px] h-[300px] pointer-events-none z-[2]">
-              <Image 
-                src="/pencil.png" 
-                alt="object" 
-                fill
-                style={{ objectFit: 'cover' }}
-                priority
-              />
+          <div className="absolute left-20 sm:left-32 md:left-55 -bottom-0 brightness-150 w-[100px] sm:w-[150px] md:w-[250px] h-[120px] sm:h-[180px] md:h-[300px] pointer-events-none z-[2]">
+            <Image 
+              src="/pencil.png" 
+              alt="object" 
+              fill
+              style={{ objectFit: 'cover' }}
+              priority
+            />
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="md:w-1/2 relative h-[200px] order-2 md:order-1">
+          <div className="flex flex-col md:flex-row justify-between items-center h-full">
+            <div className="hidden md:block md:w-1/2 relative h-full order-2 md:order-1">
               <div className="absolute left-0 top-0 w-full h-full">
                 <div className="relative w-full h-full">
-                  {/* <Image
-                    src="/shapes-left.png"
-                    alt="Development Shapes"
-                    fill
-                    style={{ objectFit: 'contain', objectPosition: 'left' }}
-                  /> */}
+                  {/* Empty space for decorative elements */}
                 </div>
               </div>
             </div>
-            <div className="md:w-1/2 mb-8 md:mb-0 order-1 md:order-2 text-right z-50 flex flex-col justify-between h-[300px] items-end">
-              <div className=''>
-                <h2 className="text-6xl font-bold mb-4">Development</h2>
-                <p className="mb-6 text-xl">Lorem ipsum dolor sit amet</p>
+            <div className="w-full md:w-1/2 mb-4 md:mb-0 order-1 md:order-2 text-left md:text-right z-50 flex flex-col justify-between items-end h-full">
+              <div className="flex flex-col h-full justify-center items-end">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-3 md:mb-4">Development</h2>
+                <p className="mb-4 sm:mb-5 md:mb-6 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">Solusi inovatif untuk kemajuan teknologi</p>
               </div>
               <Link 
                 href="/services/development" 
-                className=" border w-[250px] flex justify-center border-white/70 rounded-lg px-6 py-2 hover:bg-white/10 transition text-2xl"
+                className="border w-fit sm:w-[200px] md:w-[250px] flex justify-center border-white/70 rounded-lg px-4 sm:px-6 py-2 hover:bg-white/10 transition text-sm sm:text-base md:text-lg xl:text-xl backdrop-blur-sm bg-black/30 md:ml-auto"
               >
                 View Portfolio
               </Link>
@@ -164,14 +152,15 @@ export default function Services() {
       </div>
               
       {/* Bottom curve - half circle */}
-      <div className="absolute -bottom-[150px] left-0 w-full h-[600px] overflow-hidden z-[5] ">
+      <div className="absolute -bottom-[75px] sm:-bottom-[100px] md:-bottom-[150px] left-0 w-full h-[300px] sm:h-[400px] md:h-[600px] overflow-hidden z-[5]">
         <Image 
             src="/half-circle.png" 
             alt="Background Texture" 
             fill
             style={{ objectFit: 'cover' }}
             priority
-            className=""/>
+            className=""
+        />
       </div>
     </div>
   );

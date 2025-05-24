@@ -95,7 +95,7 @@ export default function ContactPage() {
                 {/* image */}
                 <div className="relative w-full lg:w-1/2 h-[250px] sm:h-[300px] md:h-[450px] overflow-hidden rounded-[22px]">
                     <Image 
-                    src="/test.png" 
+                    src="/modal1/1.jpeg" 
                     alt="Office Building" 
                     fill
                     style={{ objectFit: 'cover' }}

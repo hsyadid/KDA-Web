@@ -180,7 +180,7 @@ export default function Navbar() {
 
               {openMenu === 'about' && (
                 <div className="absolute top-full left-0 w-48 bg-default mt-2 py-2 px-4 z-10 animate-slide-down rounded-[15px]">
-                  <div onClick={() => handleDesktopNavigation('/visi-misi')} className="block py-2 font-inter hover:text-[#FFBD59] transition-colors cursor-pointer">vision and mission</div>
+                  <div onClick={() => handleDesktopNavigation('/visi-misi')} className="block py-2 font-inter hover:text-[#FFBD59] transition-colors cursor-pointer">Vision and Mission</div>
                   <div onClick={() => handleDesktopNavigation('/about-us')} className="block py-2 font-inter hover:text-[#FFBD59] transition-colors cursor-pointer">Company Profile</div>
                 </div>
               )}

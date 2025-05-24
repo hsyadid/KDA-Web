@@ -3,30 +3,30 @@ import Image from 'next/image';
 
 export default function VisiMisi() {
   return (
-<>
+<div className="overflow-hidden">
     {/* Graduient diagonal */}
-    <div className="absolute w-screen h-[1600px] sm:h-[2000px] top-0 opacity-70 brightness-125 pointer-events-none z-[3]">
+    <div className="absolute w-screen h-[1600px] top-0 -right-0 opacity-70 brightness-125 pointer-events-none z-[3]">
         <Image 
             src="/gradient_diagonal.png" 
             alt="Background Texture" 
             fill
             style={{ objectFit: 'cover' }}
             priority
-            className="w-full h-screen"
+            className="w-full h-full"
         />
     </div>
 
     <div className="bg-default text-white min-h-screen overflow-hidden relative">
         
         {/* Background grid pattern */}
-        <div className="absolute inset-0 w-screen h-[90%] pointer-events-none z-[1]">
+        <div className="absolute inset-0 w-screen h-full pointer-events-none z-[1]">
         <Image 
             src="/pattern.png" 
             alt="Office Building" 
             fill
             style={{ objectFit: 'cover' }}
             priority
-            className="w-screen h-screen"
+            className="w-screen h-full"
         />
         </div>
         
@@ -38,7 +38,7 @@ export default function VisiMisi() {
             fill
             style={{ objectFit: 'cover' }}
             priority
-            className="w-full h-screen"
+            className="w-full h-full"
         />
         </div>
 
@@ -105,6 +105,6 @@ export default function VisiMisi() {
         </div>
       </div>
     </div>
-</>
+</div>
   );
 }

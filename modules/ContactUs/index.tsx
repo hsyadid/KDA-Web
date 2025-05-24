@@ -69,8 +69,8 @@ export default function ContactPage() {
           {/* Text and buttons - Desktop View */}
           <div className="hidden lg:flex justify-between items-center z-10">
             <div>
-              <h2 className="text-5xl font-bold mb-2">For Other Enquiries,</h2>
-              <h1 className="text-6xl font-semibold">Contact Us</h1>
+              <h2 className="text-5xl font-bold mb-2 font-syne">For Other Enquiries,</h2>
+              <h1 className="text-6xl font-semibold font-syne">Contact Us</h1>
             </div>
             
             <div className="flex gap-4">

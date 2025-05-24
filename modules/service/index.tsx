@@ -62,7 +62,7 @@ export default function Services() {
             />
           </div>
             
-          <div className="absolute right-10 sm:right-32 md:right-52 bottom-10 brightness-150 w-[130px] sm:w-[200px] md:w-[330px] h-[100px] sm:h-[150px] md:h-[250px] pointer-events-none z-[2] rotate-20">
+          <div className="absolute right-10 sm:right-32 md:right-65 bottom-10 brightness-150 w-[130px] sm:w-[200px] md:w-[330px] h-[100px] sm:h-[150px] md:h-[250px] pointer-events-none z-[2] rotate-20">
             <Image 
               src="/bridge.png" 
               alt="object" 

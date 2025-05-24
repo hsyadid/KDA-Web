@@ -109,7 +109,7 @@ export default function Home() {
           <div className="container mx-auto px-6 pt-12 pb-64 relative z-10 flex flex-col justify-center items-center gap-30 -mt-5">
             <div className="text-center mb-24 w-[120%] ">
               {/* Mobile version - 3 lines */}
-              <div className="block sm:hidden mt-8 ">
+              <div className="block sm:hidden mt-3 ">
                 <h1 className="text-[13vw] font-bold font-syne -mb-2 uppercase tracking-widest">PT</h1>
                 <h1 className="text-[9vw] font-bold font-syne -mb-2 uppercase tracking-widest">KARYA DIMENSI</h1>
                 <h1 className="text-[13vw] font-bold font-syne -mb-2 uppercase tracking-widest">NUGRAHA</h1>

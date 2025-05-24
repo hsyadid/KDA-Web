@@ -1,5 +1,4 @@
 import PortofolioModule from "@/modules/PortofolioModule";
-import Image from "next/image";
 
 const Page = () => {
   return (

@@ -6,28 +6,33 @@ export type CardType = {
 
 export const cards: CardType[] = [
   {
-    url: "/test.png",
-    title: "Title 1",
+    url: "/modal1/2.jpeg",
+    title: "Innopreneurship Centre IPB",
     id: 1,
   },
   {
-    url: "/test.png",
-    title: "Title 2",
+    url: "/modal2/2.jpeg",
+    title: "KAI Serpong Construction",
     id: 2,
   },
   {
-    url: "/test.png",
-    title: "Title 3",
+    url: "/modal3/2.jpeg",
+    title: "Mandiri Flat Tasikmalaya",
     id: 3,
   },
   {
-    url: "/test.png",
-    title: "Title 4",
+    url: "/modal5/1.png",
+    title: "SMPN 7 Tambun",
     id: 4,
   },
   {
-    url: "/test.png",
-    title: "Title 5",
+    url: "/modal1/3.jpeg",
+    title: "Innopreneurship Centre IPB",
     id: 5,
+  },
+  {
+    url: "/modal2/3.jpeg",
+    title: "KAI Serpong Construction",
+    id: 6,
   },
 ];

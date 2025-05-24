@@ -6,7 +6,7 @@ import { useRef, useState, useEffect } from "react";
 import CardLeft from "@/components/CardLeft";
 import CardRight from "@/components/CardRight";
 import CardFront from "@/components/CardFront";
-import { cards, CardType } from "./data/cards";
+import { cards } from "./data/cards";
 
 export default function Home() {
   const targetRef = useRef<HTMLDivElement | null>(null);
@@ -34,13 +34,14 @@ export default function Home() {
       });
     }, options);
 
-    if (portfolioRef.current) {
-      observer.observe(portfolioRef.current);
+    const portfolioElement = portfolioRef.current;
+    if (portfolioElement) {
+      observer.observe(portfolioElement);
     }
 
     return () => {
-      if (portfolioRef.current) {
-        observer.unobserve(portfolioRef.current);
+      if (portfolioElement) {
+        observer.unobserve(portfolioElement);
       }
     };
   }, []);
@@ -109,7 +110,7 @@ export default function Home() {
               {/* Mobile version - 3 lines */}
               <div className="block sm:hidden mt-8 ">
                 <h1 className="text-[13vw] font-bold font-syne -mb-2 uppercase tracking-widest">PT</h1>
-                <h1 className="text-[11vw] font-bold font-syne -mb-2 uppercase tracking-widest">KARYA DIMENSI</h1>
+                <h1 className="text-[9vw] font-bold font-syne -mb-2 uppercase tracking-widest">KARYA DIMENSI</h1>
                 <h1 className="text-[13vw] font-bold font-syne -mb-2 uppercase tracking-widest">NUGRAHA</h1>
               </div>
               
@@ -353,7 +354,7 @@ export default function Home() {
               <CardRight card={cards[4]}/>
             </div>
             <div className="col-span-1 row-span-1 -mt-50">
-              <CardLeft card={cards[4]}/>
+              <CardLeft card={cards[5]}/>
             </div>
 
             <div className="mt-8">
@@ -396,7 +397,7 @@ export default function Home() {
               <CardRight card={cards[4]}/>
             </div>
             <div className="w-full flex justify-center translate-x-5">
-              <CardLeft card={cards[4]}/>
+              <CardLeft card={cards[5]}/>
             </div>
           </div>
 

@@ -87,31 +87,25 @@ const Modal = ({
   return (
     <div className={`${inter.className}`}>
       <div
-        className={`w-full rounded-md border-2 border-white/50 p-5 shadow-white hover:cursor-pointer  `}
+        className={`w-full h-full rounded-md border-2 border-white/50 p-5 shadow-white hover:cursor-pointer flex flex-col`}
         style={{ boxShadow: "inset 0 0 10px rgba(255, 255, 255, 0.2)" }}
         onClick={() => setIsModalOpen(!isModalOpen)}
       >
         <div className="text-white lg:space-y-3">
-          <p className="lg:text-4xl max-md:text-sm font-bold  md:font-bold">
+          <p className="lg:text-4xl max-md:text-sm font-bold md:font-bold">
             {title}
           </p>
           <p className="lg:text-xl max-md:text-[10px] text-sm font-light">
             {shortDescription}
           </p>
         </div>
-        <div
-          className={`w-full flex h-full items-center justify-center pt-2 ${
-            imageHeight ? "h-[500px]" : "h-[250px]"
-          }`}
-        >
+        <div className="flex-1 w-full pt-2">
           <Image
             src={mediaList[0]?.src || "/placeholder-porto-plain.png"}
             alt={title}
             width={648.62}
             height={56.4}
-            className={`rounded-md ${
-              imageHeight ? "h-full" : "h-[250px]"
-            } w-full object-cover`}
+            className="rounded-md w-full h-full object-cover"
           />
         </div>
       </div>

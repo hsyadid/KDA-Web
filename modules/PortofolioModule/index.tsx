@@ -283,16 +283,21 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
           src="/grid.png"
           alt="background-grid"
           fill
-          className="object-cover opacity-10 -z-2 "
+          priority
+          sizes="100vw"
+          className="object-cover opacity-10 -z-2"
         />
 
         {/* Left Side Image */}
-        <div className="relative w-full h-full ">
+        <div className="relative w-full h-full">
           <Image
             src={mainImage}
             alt="Sample Image"
             fill
-            className="object-cover "
+            priority
+            sizes="(max-width: 768px) 100vw, 50vw"
+            quality={85}
+            className="object-cover"
           />
           <div className="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-green-1 to-transparent pointer-events-none" />
         </div>
@@ -349,7 +354,10 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
                         src={slide.image}
                         alt={slide.title}
                         fill
-                        className="object-cover rounded-xl w-full "
+                        loading="eager"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 33vw, 20vw"
+                        quality={75}
+                        className="object-cover rounded-xl w-full"
                         onClick={() => {
                           setMainImage(slide.image);
                           setTitle(slide.title);
@@ -359,7 +367,7 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
 
                       {/* sillhoute below */}
                       <div className="absolute w-full h-1/3 opacity-40 rounded-t-lg bg-[#215A58] blur-xl" />
-                      <p className="text-white xl:text-2xl text-xl absolute font-bold p-5 mt-2 z-10">
+                      <p className="text-white xl:text-xl text-xl absolute font-bold p-5 mt-2 z-10">
                         {slide.title}
                       </p>
                     </div>
@@ -405,6 +413,9 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
           alt="Sample Image"
           width={1000}
           height={1000}
+          priority
+          loading="eager"
+          quality={85}
           className="object-cover w-full h-full"
         />
 
@@ -452,22 +463,20 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 auto-rows-auto justify-center xl:gap-12 gap-5 pt-6 z-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 z-20">
           {portoType === "Development" ? (
             <>
-              <div className="row-span-1">
-                <Modal
-                  imageHeight={false}
-                  title="KAI SERPONG"
-                  shortDescription=""
-                  longDescription="Pembangunan fasilitas dan infrastruktur untuk mendukung operasional transportasi di kawasan Serpong, meningkatkan aksesibilitas dan kenyamanan pengguna jasa kereta api."
-                  mediaList={mediaList2}
-                  progressPercentage="50"
-                  category={portoType}
-                />
-              </div>
               <Modal
-                imageHeight={true}
+                imageHeight={false}
+                title="KAI SERPONG"
+                shortDescription=""
+                longDescription="Pembangunan fasilitas dan infrastruktur untuk mendukung operasional transportasi di kawasan Serpong, meningkatkan aksesibilitas dan kenyamanan pengguna jasa kereta api."
+                mediaList={mediaList2}
+                progressPercentage="50"
+                category={portoType}
+              />
+              <Modal
+                imageHeight={false}
                 title="INNOPRENEURSHIP CENTRE MANDIRI IPB"
                 shortDescription=""
                 longDescription="Pembangunan pusat inovasi dan kewirausahaan di IPB untuk mendukung pengembangan ide dan kolaborasi antar pelaku bisnis dan mahasiswa."
@@ -475,9 +484,8 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
                 progressPercentage="50"
                 category={portoType}
               />
-
               <Modal
-                imageHeight={true}
+                imageHeight={false}
                 title="PEMANCINGAN PASIR TANJUNG"
                 shortDescription=""
                 longDescription="Pembangunan area pemancingan di Pasir Tanjung yang dirancang untuk menyediakan fasilitas rekreasi dan hiburan bagi pengunjung, dengan fokus pada kenyamanan dan keindahan alam."
@@ -488,18 +496,15 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
                 progressPercentage="50"
                 category={portoType}
               />
-
-              <div className=" row-span-3">
-                <Modal
-                  imageHeight={false}
-                  title="MANDIRI FLAT TASIKMALAYA"
-                  shortDescription=""
-                  longDescription="Pembangunan kompleks perumahan Mandiri Flat di Tasikmalaya, yang dirancang untuk menyediakan hunian vertikal yang nyaman dan terjangkau bagi masyarakat setempat."
-                  mediaList={mediaList3}
-                  progressPercentage="50"
-                  category={portoType}
-                />
-              </div>
+              <Modal
+                imageHeight={false}
+                title="MANDIRI FLAT TASIKMALAYA"
+                shortDescription=""
+                longDescription="Pembangunan kompleks perumahan Mandiri Flat di Tasikmalaya, yang dirancang untuk menyediakan hunian vertikal yang nyaman dan terjangkau bagi masyarakat setempat."
+                mediaList={mediaList3}
+                progressPercentage="50"
+                category={portoType}
+              />
             </>
           ) : (
             <>
@@ -512,35 +517,28 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
                 progressPercentage="70"
                 category={portoType}
               />
-
-              <div className="row-span-2">
-                <Modal
-                  imageHeight={true}
-                  title="STADION MINI BOJONG MANGU"
-                  shortDescription=""
-                  longDescription="Pembangunan stadion mini di Bojong Mangu untuk meningkatkan fasilitas olahraga dan mendukung kegiatan olahraga lokal dengan fasilitas yang memadai dan akses mudah bagi masyarakat."
-                  mediaList={mediaList6}
-                  progressPercentage="0"
-                  category={portoType}
-                />
-              </div>
-
-              <div className="row-span-2">
-                <Modal
-                  imageHeight={true}
-                  title="UPTD PPA"
-                  shortDescription=""
-                  longDescription="Pembangunan Unit Pelaksana Teknis Daerah Perlindungan Perempuan dan Anak (UPTD PPA) untuk menyediakan fasilitas layanan yang mendukung perlindungan dan pemberdayaan perempuan serta anak di daerah."
-                  mediaList={mediaList7}
-                  progressPercentage="0"
-                  category={portoType}
-                />
-              </div>
-
+              <Modal
+                imageHeight={false}
+                title="STADION MINI BOJONG MANGU"
+                shortDescription=""
+                longDescription="Pembangunan stadion mini di Bojong Mangu untuk meningkatkan fasilitas olahraga dan mendukung kegiatan olahraga lokal dengan fasilitas yang memadai dan akses mudah bagi masyarakat."
+                mediaList={mediaList6}
+                progressPercentage="0"
+                category={portoType}
+              />
+              <Modal
+                imageHeight={false}
+                title="UPTD PPA"
+                shortDescription=""
+                longDescription="Pembangunan Unit Pelaksana Teknis Daerah Perlindungan Perempuan dan Anak (UPTD PPA) untuk menyediakan fasilitas layanan yang mendukung perlindungan dan pemberdayaan perempuan serta anak di daerah."
+                mediaList={mediaList7}
+                progressPercentage="0"
+                category={portoType}
+              />
               <Modal
                 imageHeight={false}
                 title="WORKSHOP BINAMARGA"
-                shortDescription="Short Desc"
+                shortDescription=""
                 longDescription="Pembangunan fasilitas workshop Binamarga untuk mendukung pemeliharaan dan perbaikan infrastruktur jalan, serta meningkatkan kualitas pelayanan dan kinerja sektor transportasi."
                 mediaList={mediaList8}
                 progressPercentage="0"

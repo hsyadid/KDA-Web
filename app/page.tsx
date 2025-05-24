@@ -56,11 +56,12 @@ export default function Home() {
           {/* Background grid pattern */}
           <div className="absolute inset-0 w-screen h-[90%] brightness-200 pointer-events-none z-[1]">
             <Image 
-                src="/pattern.png" 
-                alt="Grid Pattern" 
-                fill
-                style={{ objectFit: 'cover' }}
-                priority
+              src="/pattern.png" 
+              alt="Grid Pattern" 
+              fill
+              priority
+              loading="eager"
+              sizes="100vw"
               className="w-screen h-screen"
             />
           </div>
@@ -69,23 +70,24 @@ export default function Home() {
           <div className="absolute inset-0 w-full h-full opacity-80 brightness-200 pointer-events-none z-[2]">
             <Image 
               src="/gradient_bottom.png" 
-              alt="gradient bottom " 
+              alt="gradient bottom" 
               fill
-              style={{ objectFit: 'cover' }}
               priority
+              loading="eager"
+              sizes="100vw"
               className="w-full h-screen"
             />
           </div>
 
-          
           {/* Background texture */}
           <div className="absolute inset-0 w-full h-full opacity-15 brightness-200 pointer-events-none z-[3]">
             <Image 
               src="/Textures.png" 
               alt="Background Texture" 
               fill
-              style={{ objectFit: 'cover' }}
               priority
+              loading="eager"
+              sizes="100vw"
               className="w-full h-screen"
             />
           </div>
@@ -93,17 +95,13 @@ export default function Home() {
           {/* Hero Image */}
           <div className="absolute -bottom-0 sm:bottom-0 md:-bottom-9 lg:-bottom-20 xl:-bottom-37 left-1/2 transform -translate-x-1/2 w-[120vh] sm:w-[150vh] md:w-[100vh] lg:w-[90vh] xl:w-[90vh] h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[90vh] xl:h-[100vh] opacity-100 brightness-110 pointer-events-none z-[50]">
             <Image 
-              src="/HERO_image.png" 
+              src="/hero.png" 
               alt="Hero Image"
               fill
-              sizes="(max-width: 640px) 150vh, (max-width: 768px) 150vh, (max-width: 1024px) 100vh, (max-width: 1280px) 90vh, 90vh"
-              style={{ 
-                objectFit: 'contain'
-              }}
               priority
-              quality={100}
               loading="eager"
-              unoptimized={true}
+              sizes="(max-width: 640px) 150vh, (max-width: 768px) 150vh, (max-width: 1024px) 100vh, (max-width: 1280px) 90vh, 90vh"
+              className="object-contain"
             />
           </div>
 

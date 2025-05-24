@@ -182,7 +182,7 @@ const Modal = ({
 
               <div className="flex absolute inset-0 z-30 justify-end text-end items-end  pr-8 pb-8">
                 {category !== "Development" &&
-                  mediaList[currentIndex].type !== "image" && (
+                  mediaList[currentIndex].type === "video" && (
                     <p className="font-white font-bold text-xl text-white">
                       {mediaList[currentIndex].progress || progressPercentage}%{" "}
                       <br /> Work in Progress
@@ -201,7 +201,7 @@ const Modal = ({
                 {mediaList.map((mediaSource, index) => (
                   <SwiperSlide key={index}>
                     {mediaSource.type === "image" ? (
-                      <div className="relative w-full h-full ">
+                      <div className="relative w-full h-full">
                         <Image
                           src={mediaSource.src}
                           alt="placeholder"
@@ -212,11 +212,6 @@ const Modal = ({
                             setCurrentIndex(index);
                           }}
                         />
-                        {category !== "Development" && (
-                          <div className="absolute bottom-0 right-0 p-2 bg-black/50 text-white text-sm rounded-bl-lg">
-                            {mediaSource.progress || progressPercentage}%
-                          </div>
-                        )}
                       </div>
                     ) : (
                       <div className="relative w-full h-full">
@@ -314,7 +309,7 @@ const Modal = ({
                 </>
               )}
               <div className="flex absolute inset-0 z-30 justify-end text-end items-end  pr-4 pb-4">
-                {category !== "Development" && (
+                {category !== "Development" && mediaList[currentIndex].type === "video" && (
                   <p className="font-white font-bold md:text-lg text-sm text-white">
                     {mediaList[currentIndex].progress || progressPercentage}%{" "}
                     <br /> Work in Progress
@@ -332,7 +327,7 @@ const Modal = ({
                 {mediaList.map((mediaSrc, index) => (
                   <SwiperSlide key={index}>
                     {mediaSrc.type === "image" ? (
-                      <div className="relative md:h-40 h-20 ">
+                      <div className="relative md:h-40 h-20">
                         <Image
                           src={mediaSrc.src}
                           alt="placeholder"
@@ -343,20 +338,13 @@ const Modal = ({
                             setMainImage(mainImage);
                           }}
                         />
-                        {category !== "Development" && (
-                          <div className="absolute bottom-0 right-0 p-2 bg-black/50 text-white text-sm rounded-bl-lg">
-                            {mediaSrc.progress || progressPercentage}%
-                          </div>
-                        )}
                       </div>
                     ) : (
                       <div className="relative md:h-40 h-20">
                         <video
                           className="object-cover w-full h-full rounded-lg hover:cursor-pointer"
                           src={mediaSrc.src}
-                          onError={() =>
-                            console.error("Failed to load video:", mediaSrc.src)
-                          }
+                          onError={() => handleVideoError(mediaSrc.src)}
                           onClick={() => {
                             setCurrentIndex(index);
                             setMainImage(mainImage);

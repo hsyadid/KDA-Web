@@ -7,7 +7,10 @@ import "react-multi-carousel/lib/styles.css";
 import Shadow from "./components/Shadow";
 import { useEffect, useState } from "react";
 
-const roboto = Roboto({ subsets: ["latin"] });
+const roboto = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 type ImageItem = {
   src: string;
@@ -89,9 +92,22 @@ const AboutUsModule = () => {
               </p>
               <p className="text-white/80 max-lg:text-sm text-md xl:text-xl xl:pr-20 font-inter leading-relaxed">
                 <br />
-                PT Karya Dimensi Nugraha Berdiri pada tahun 2024, yang berdomisili di Perum Metland Tambun Jl. Biduri III Blok F 22-23, Cibuntu, Cibitung, Bekasi, Jawa Barat. PT Karya Dimensi Nugraha adalah perusahaan yang memiliki kapabilitas dalam bidang konstruksi gedung hunian, perkantoran, bangunan sipil jalan, jembatan, underpass, instalasi saluran air dan listrik.
+                PT Karya Dimensi Nugraha Berdiri pada tahun 2024, yang
+                berdomisili di Perum Metland Tambun Jl. Biduri III Blok F 22-23,
+                Cibuntu, Cibitung, Bekasi, Jawa Barat. PT Karya Dimensi Nugraha
+                adalah perusahaan yang memiliki kapabilitas dalam bidang
+                konstruksi gedung hunian, perkantoran, bangunan sipil jalan,
+                jembatan, underpass, instalasi saluran air dan listrik.
                 <br /> <br />
-                Sebagai bagian dari misi kami untuk menjunjung tinggi suatu kualitas dengan standar yang sudah ditentukan dalam Peraturan Pemerintah. PT Karya Dimensi Nugraha mengaplikasikan truktur organisasi perusahaan dari semua unsur yang saling terkait. Baik secara operasional maupun administratif dengan penerapan kelola perusahaan yang baik (good corporate governance), komitmen terhadap tanggung jawab sosial (corporate social responsibility) dan tetap memperhatikan Peraturan Pemerintah (goverment regulation).
+                Sebagai bagian dari misi kami untuk menjunjung tinggi suatu
+                kualitas dengan standar yang sudah ditentukan dalam Peraturan
+                Pemerintah. PT Karya Dimensi Nugraha mengaplikasikan truktur
+                organisasi perusahaan dari semua unsur yang saling terkait. Baik
+                secara operasional maupun administratif dengan penerapan kelola
+                perusahaan yang baik (good corporate governance), komitmen
+                terhadap tanggung jawab sosial (corporate social responsibility)
+                dan tetap memperhatikan Peraturan Pemerintah (goverment
+                regulation).
               </p>
             </div>
 
@@ -108,12 +124,27 @@ const AboutUsModule = () => {
 
           {/* Vertical Mobile View */}
           <div className="md:hidden flex flex-col items-center text-center w-full pt-12 relative z-10 px-4 pb-4">
-            <p className="text-white text-4xl font-bold font-syne tracking-wider">ABOUT US</p>
+            <p className="text-white text-4xl font-bold font-syne tracking-wider">
+              ABOUT US
+            </p>
             <p className="text-white/80 text-sm font-inter leading-relaxed">
               <br />
-              PT Karya Dimensi Nugraha Berdiri pada tahun 2024, yang berdomisili di Perum Metland Tambun Jl. Biduri III Blok F 22-23, Cibuntu, Cibitung, Bekasi, Jawa Barat. PT Karya Dimensi Nugraha adalah perusahaan yang memiliki kapabilitas dalam bidang konstruksi gedung hunian, perkantoran, bangunan sipil jalan, jembatan, underpass, instalasi saluran air dan listrik.
+              PT Karya Dimensi Nugraha Berdiri pada tahun 2024, yang berdomisili
+              di Perum Metland Tambun Jl. Biduri III Blok F 22-23, Cibuntu,
+              Cibitung, Bekasi, Jawa Barat. PT Karya Dimensi Nugraha adalah
+              perusahaan yang memiliki kapabilitas dalam bidang konstruksi
+              gedung hunian, perkantoran, bangunan sipil jalan, jembatan,
+              underpass, instalasi saluran air dan listrik.
               <br /> <br />
-              Sebagai bagian dari misi kami untuk menjunjung tinggi suatu kualitas dengan standar yang sudah ditentukan dalam Peraturan Pemerintah. PT Karya Dimensi Nugraha mengaplikasikan truktur organisasi perusahaan dari semua unsur yang saling terkait. Baik secara operasional maupun administratif dengan penerapan kelola perusahaan yang baik (good corporate governance), komitmen terhadap tanggung jawab sosial (corporate social responsibility) dan tetap memperhatikan Peraturan Pemerintah (goverment regulation).
+              Sebagai bagian dari misi kami untuk menjunjung tinggi suatu
+              kualitas dengan standar yang sudah ditentukan dalam Peraturan
+              Pemerintah. PT Karya Dimensi Nugraha mengaplikasikan truktur
+              organisasi perusahaan dari semua unsur yang saling terkait. Baik
+              secara operasional maupun administratif dengan penerapan kelola
+              perusahaan yang baik (good corporate governance), komitmen
+              terhadap tanggung jawab sosial (corporate social responsibility)
+              dan tetap memperhatikan Peraturan Pemerintah (goverment
+              regulation).
             </p>
 
             <div className="mt-12 z-10">
@@ -219,11 +250,22 @@ const AboutUsModule = () => {
 
           <div className="text-white/80 px-6 md:px-20 text-center pb-6 max-2xl:text-sm text-xl mt-12">
             <p className="font-inter leading-relaxed">
-              Jasa konstruksi kami bisa mengerjakan semua pembangunan yang detail dan terperinci. Anda dapat membawa desain bangunan sendiri atau menggunakan team arsitek kami dan kami akan membangunnya. Selain itu anda juga bisa memberi masukan mengenai pemilihan jenis material dan bahan bangunan yang diinginkan.
-              <br /><br />
-              Kami akan memberikan saran dan masukan tentang desain serta bahan dan bangunan yang anda inginkan supaya lebih sempurna. Menjanjikan bangunan anda dibangun tepat waktu dengan kualitas yang bisa dipertanggungjawabkan. Dengan harga yang juga bersaing.
-              <br /><br />
-              Memberikan standar kerja secara efisien, efektif dan terorganisir secara berkelanjutan melalui komitmen GCG (Good Corporate Governance) dan CSR (Corporate Social Responsibility).
+              Jasa konstruksi kami bisa mengerjakan semua pembangunan yang
+              detail dan terperinci. Anda dapat membawa desain bangunan sendiri
+              atau menggunakan team arsitek kami dan kami akan membangunnya.
+              Selain itu anda juga bisa memberi masukan mengenai pemilihan jenis
+              material dan bahan bangunan yang diinginkan.
+              <br />
+              <br />
+              Kami akan memberikan saran dan masukan tentang desain serta bahan
+              dan bangunan yang anda inginkan supaya lebih sempurna. Menjanjikan
+              bangunan anda dibangun tepat waktu dengan kualitas yang bisa
+              dipertanggungjawabkan. Dengan harga yang juga bersaing.
+              <br />
+              <br />
+              Memberikan standar kerja secara efisien, efektif dan terorganisir
+              secara berkelanjutan melalui komitmen GCG (Good Corporate
+              Governance) dan CSR (Corporate Social Responsibility).
             </p>
           </div>
         </div>

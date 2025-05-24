@@ -54,7 +54,7 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
     },
   ];
 
-  const imageList3 = Array.from({ length: 3 }, (_, i) => ({
+  const imageList3 = Array.from({ length: 15 }, (_, i) => ({
     type: "image",
     src: `/modal3/${i + 1}.jpeg`,
   }));
@@ -64,7 +64,7 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
   const imageList5 = Array.from({ length: 2 }, (_, i) => ({
     type: "image",
     src: `/modal5/${i + 1}.png`,
-    progress: i === 0 ? 45 : 60
+    progress: i === 0 ? 70 : i === 1 ? 100 : 65,
   }));
 
   const mediaList5 = [
@@ -72,19 +72,19 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
     {
       type: "video",
       src: "modal5/1.mp4",
-      progress: 70
+      progress: 70,
     },
     {
       type: "video",
       src: "modal5/2.mp4",
-      progress: 85
+      progress: 100,
     },
   ];
 
   const imageList6 = Array.from({ length: 3 }, (_, i) => ({
     type: "image",
     src: `/modal6/${i + 1}.png`,
-    progress: i === 0 ? 30 : i === 1 ? 50 : 75
+    progress: i === 0 ? 0 : i === 1 ? 73 : 100,
   }));
 
   const mediaList6 = [
@@ -92,24 +92,24 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
     {
       type: "video",
       src: "modal6/1.mp4",
-      progress: 40
+      progress: 0,
     },
     {
       type: "video",
       src: "modal6/2.mp4",
-      progress: 65
+      progress: 73,
     },
     {
       type: "video",
       src: "modal6/3.mp4",
-      progress: 80
+      progress: 100,
     },
   ];
 
   const imageList7 = Array.from({ length: 3 }, (_, i) => ({
     type: "image",
     src: `/modal7/${i + 1}.png`,
-    progress: i === 0 ? 25 : i === 1 ? 40 : 65
+    progress: i === 0 ? 35 : i === 1 ? 48 : 75,
   }));
 
   const mediaList7 = [
@@ -117,24 +117,24 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
     {
       type: "video",
       src: "modal7/1.mp4",
-      progress: 35
+      progress: 35,
     },
     {
       type: "video",
       src: "modal7/2.mp4",
-      progress: 55
+      progress: 48,
     },
     {
       type: "video",
       src: "modal7/3.mp4",
-      progress: 75
+      progress: 75,
     },
   ];
 
   const imageList8 = Array.from({ length: 3 }, (_, i) => ({
     type: "image",
     src: `/modal8/${i + 1}.png`,
-    progress: i === 0 ? 35 : i === 1 ? 55 : 80
+    progress: i === 0 ? 0 : i === 1 ? 75 : 100,
   }));
 
   const mediaList8 = [
@@ -142,121 +142,121 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
     {
       type: "video",
       src: "modal8/1.mp4",
-      progress: 45
+      progress: 0,
     },
     {
       type: "video",
       src: "modal8/2.mp4",
-      progress: 60
+      progress: 75,
     },
     {
       type: "video",
       src: "modal8/3.mp4",
-      progress: 90
+      progress: 100,
     },
   ];
 
   const developmentSlides = [
     {
       image: "/modal1/1.jpeg",
-      title: "Konstruksi Rumah Hunian ABC",
-      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
+      title: "INNOPRENEURSHIP CENTRE MANDIRI IPB",
+      desc: "Pembangunan pusat inovasi dan kewirausahaan di IPB untuk mendukung pengembangan ide dan kolaborasi antar pelaku bisnis dan mahasiswa.",
     },
     {
       image: "/modal1/2.jpeg",
-      title: "Konstruksi Rumah Hunian ABC",
-      desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
+      title: "INNOPRENEURSHIP CENTRE MANDIRI IPB",
+      desc: "Pembangunan pusat inovasi dan kewirausahaan di IPB untuk mendukung pengembangan ide dan kolaborasi antar pelaku bisnis dan mahasiswa.",
     },
     {
       image: "/modal1/3.jpeg",
-      title: "Konstruksi Rumah Hunian ABC",
-      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
+      title: "INNOPRENEURSHIP CENTRE MANDIRI IPB",
+      desc: "Pembangunan pusat inovasi dan kewirausahaan di IPB untuk mendukung pengembangan ide dan kolaborasi antar pelaku bisnis dan mahasiswa.",
     },
     {
       image: "/modal1/4.jpeg",
-      title: "Konstruksi Rumah Hunian ABC",
-      desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
+      title: "INNOPRENEURSHIP CENTRE MANDIRI IPB",
+      desc: "Pembangunan pusat inovasi dan kewirausahaan di IPB untuk mendukung pengembangan ide dan kolaborasi antar pelaku bisnis dan mahasiswa.",
     },
     {
       image: "/modal2/1.jpeg",
-      title: "Konstruksi Rumah Hunian EFG",
-      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
+      title: "KONSTRUKSI KAI SERPONG",
+      desc: "Pembangunan fasilitas dan infrastruktur untuk mendukung operasional transportasi di kawasan Serpong, meningkatkan aksesibilitas dan kenyamanan pengguna jasa kereta api.",
     },
     {
       image: "/modal2/2.jpeg",
-      title: "Konstruksi Rumah Hunian IJK",
-      desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
+      title: "KONSTRUKSI KAI SERPONG",
+      desc: "Pembangunan fasilitas dan infrastruktur untuk mendukung operasional transportasi di kawasan Serpong, meningkatkan aksesibilitas dan kenyamanan pengguna jasa kereta api.",
     },
     {
       image: "/modal2/3.jpeg",
 
-      title: "Konstruksi Rumah Hunian LMN",
-      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
+      title: "KONSTRUKSI KAI SERPONG",
+      desc: "Pembangunan fasilitas dan infrastruktur untuk mendukung operasional transportasi di kawasan Serpong, meningkatkan aksesibilitas dan kenyamanan pengguna jasa kereta api.",
     },
     {
       image: "/modal3/2.jpeg",
 
-      title: "Konstruksi Rumah Hunian OPQ",
-      desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
+      title: "KONSTRUKSI MANDIRI FLAT TASIKMALAYA",
+      desc: "Pembangunan kompleks perumahan Mandiri Flat di Tasikmalaya, yang dirancang untuk menyediakan hunian vertikal yang nyaman dan terjangkau bagi masyarakat setempat.",
     },
     {
       image: "/modal3/3.jpeg",
 
-      title: "Konstruksi Rumah Hunian RST",
-      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
+      title: "KONSTRUKSI MANDIRI FLAT TASIKMALAYA",
+      desc: "Pembangunan kompleks perumahan Mandiri Flat di Tasikmalaya, yang dirancang untuk menyediakan hunian vertikal yang nyaman dan terjangkau bagi masyarakat setempat.",
     },
   ];
 
   const infrastructureSlides = [
     {
       image: "/modal5/1.png",
-      title: "Konstruksi Rumah Hunian ABC",
-      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
+      title: "SMPN 7 TAMBUN",
+      desc: "Pembangunan fasilitas sekolah SMPN 7 di Tambun untuk mendukung pendidikan dengan menyediakan ruang belajar yang modern dan nyaman bagi siswa dan tenaga pengajar.",
     },
     {
       image: "/modal5/2.png",
-      title: "Konstruksi Rumah Hunian ABC",
-      desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
+      title: "SMPN 7 TAMBUN",
+      desc: "Pembangunan fasilitas sekolah SMPN 7 di Tambun untuk mendukung pendidikan dengan menyediakan ruang belajar yang modern dan nyaman bagi siswa dan tenaga pengajar.",
     },
     {
       image: "/modal6/1.png",
 
-      title: "Konstruksi Rumah Hunian ABC",
-      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
+      title: "STADION MINI BOJONG MANGU",
+      desc: "Pembangunan stadion mini di Bojong Mangu untuk meningkatkan fasilitas olahraga dan mendukung kegiatan olahraga lokal dengan fasilitas yang memadai dan akses mudah bagi masyarakat.",
     },
     {
       image: "/modal6/2.png",
-      title: "Konstruksi Rumah Hunian ABC",
-      desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
-    },
-    {
-      image: "/modal6/3.png",
-      title: "Konstruksi Rumah Hunian EFG",
-      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
+      title: "STADION MINI BOJONG MANGU",
+      desc: "Pembangunan stadion mini di Bojong Mangu untuk meningkatkan fasilitas olahraga dan mendukung kegiatan olahraga lokal dengan fasilitas yang memadai dan akses mudah bagi masyarakat.",
     },
     {
       image: "/modal7/1.png",
-
-      title: "Konstruksi Rumah Hunian IJK",
-      desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
+      title: "UPTD PPA",
+      desc: "Pembangunan Unit Pelaksana Teknis Daerah Perlindungan Perempuan dan Anak (UPTD PPA) untuk menyediakan fasilitas layanan yang mendukung perlindungan dan pemberdayaan perempuan serta anak di daerah.",
     },
     {
       image: "/modal7/2.png",
 
-      title: "Konstruksi Rumah Hunian LMN",
-      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
+      title: "UPTD PPA",
+      desc: "Pembangunan Unit Pelaksana Teknis Daerah Perlindungan Perempuan dan Anak (UPTD PPA) untuk menyediakan fasilitas layanan yang mendukung perlindungan dan pemberdayaan perempuan serta anak di daerah.",
     },
     {
       image: "/modal7/3.png",
 
-      title: "Konstruksi Rumah Hunian OPQ",
-      desc: "Konstruksi Rumah EFGH Konstruksi Rumah EFGH Konstruksi Rumah EFGH",
+      title: "UPTD PPA",
+      desc: "Pembangunan Unit Pelaksana Teknis Daerah Perlindungan Perempuan dan Anak (UPTD PPA) untuk menyediakan fasilitas layanan yang mendukung perlindungan dan pemberdayaan perempuan serta anak di daerah.",
     },
     {
-      image: "/modal7/5.png",
+      image: "/modal8/1.png",
 
-      title: "Konstruksi Rumah Hunian RST",
-      desc: "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD",
+      title: "WORKSHOP BINAMARGA",
+      desc: "Pembangunan fasilitas workshop Binamarga untuk mendukung pemeliharaan dan perbaikan infrastruktur jalan, serta meningkatkan kualitas pelayanan dan kinerja sektor transportasi.",
+    },
+    {
+      image: "/modal8/2.png",
+
+      title: "WORKSHOP BINAMARGA",
+      desc: "Pembangunan fasilitas workshop Binamarga untuk mendukung pemeliharaan dan perbaikan infrastruktur jalan, serta meningkatkan kualitas pelayanan dan kinerja sektor transportasi.",
     },
   ];
 
@@ -411,10 +411,9 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
         <div className="absolute inset-0 flex flex-col text-center justify-center px-4">
           <p className="text-[#FFBD59] font-bold text-2xl">{portoType}</p>
           <p className="text-white text-3xl font-bold ">
-            {portoType === "Development" 
+            {portoType === "Development"
               ? "INNOPRENEURSHIP CENTRE MANDIRI IPB"
-              : "SMPN 7 TAMBUN"
-            }
+              : "SMPN 7 TAMBUN"}
           </p>
         </div>
       </div>
@@ -427,8 +426,7 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
           <p className="text-[12px] text-white text-center ">
             {portoType === "Development"
               ? "Mengembangkan solusi inovatif dan efisien yang mendukung pertumbuhan dan kemajuan teknologi melalui proses pengembangan terstruktur."
-              : "Membangun fondasi yang kuat untuk mendukung sistem dan operasi bisnis dengan sumber daya yang handal dan terkelola dengan baik."
-            }
+              : "Membangun fondasi yang kuat untuk mendukung sistem dan operasi bisnis dengan sumber daya yang handal dan terkelola dengan baik."}
           </p>
         </div>
       </div>
@@ -447,9 +445,7 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
             Portofolio
           </p>
           <p className="text-white font-bold lg:text-7xl md:text-5xl text-2xl">
-            {portoType === "Development"
-              ? "Development Planers"
-              : portoType}
+            {portoType === "Development" ? "Development Planers" : portoType}
           </p>
           <p className="text-white lg:text-3xl md:text-2xl text-md">
             All works
@@ -460,51 +456,49 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
           {portoType === "Development" ? (
             <>
               <div className="row-span-1">
+                <Modal
+                  imageHeight={false}
+                  title="KAI SERPONG"
+                  shortDescription=""
+                  longDescription="Pembangunan fasilitas dan infrastruktur untuk mendukung operasional transportasi di kawasan Serpong, meningkatkan aksesibilitas dan kenyamanan pengguna jasa kereta api."
+                  mediaList={mediaList2}
+                  progressPercentage="50"
+                  category={portoType}
+                />
+              </div>
               <Modal
-                imageHeight={false}
-                title="KAI SERPONG"
+                imageHeight={true}
+                title="INNOPRENEURSHIP CENTRE MANDIRI IPB"
                 shortDescription=""
-                longDescription="Pembangunan fasilitas dan infrastruktur untuk mendukung operasional transportasi di kawasan Serpong, meningkatkan aksesibilitas dan kenyamanan pengguna jasa kereta api."
-                mediaList={mediaList2}
-                progressPercentage={50}
+                longDescription="Pembangunan pusat inovasi dan kewirausahaan di IPB untuk mendukung pengembangan ide dan kolaborasi antar pelaku bisnis dan mahasiswa."
+                mediaList={mediaList1}
+                progressPercentage="50"
                 category={portoType}
               />
-              </div>
-                <Modal
-                  imageHeight={true}
-                  title="INNOPRENEURSHIP CENTRE MANDIRI IPB"
-                  shortDescription=""
-                  longDescription="Pembangunan pusat inovasi dan kewirausahaan di IPB untuk mendukung pengembangan ide dan kolaborasi antar pelaku bisnis dan mahasiswa."
-                  mediaList={mediaList1}
-                  progressPercentage={50}
-                  category={portoType}
-                />
 
-<Modal
-                  imageHeight={true}
-                  title="PEMANCINGAN PASIR TANJUNG"
-                  shortDescription=""
-                  longDescription="Pembangunan area pemancingan di Pasir Tanjung yang dirancang untuk menyediakan fasilitas rekreasi dan hiburan bagi pengunjung, dengan fokus pada kenyamanan dan keindahan alam."
-                  mediaList={[
-                    { type: "image", src: "/modal4/1.png" },
-                    { type: "video", src: "/modal4/1.mp4" },
-                  ]}
-                  progressPercentage={50}
-                  category={portoType}
-                />
-
+              <Modal
+                imageHeight={true}
+                title="PEMANCINGAN PASIR TANJUNG"
+                shortDescription=""
+                longDescription="Pembangunan area pemancingan di Pasir Tanjung yang dirancang untuk menyediakan fasilitas rekreasi dan hiburan bagi pengunjung, dengan fokus pada kenyamanan dan keindahan alam."
+                mediaList={[
+                  { type: "image", src: "/modal4/1.png" },
+                  { type: "video", src: "/modal4/1.mp4" },
+                ]}
+                progressPercentage="50"
+                category={portoType}
+              />
 
               <div className=" row-span-3">
-                
-              <Modal
-                imageHeight={false}
-                title="MANDIRI FLAT TASIKMALAYA"
-                shortDescription=""
-                longDescription="Pembangunan kompleks perumahan Mandiri Flat di Tasikmalaya, yang dirancang untuk menyediakan hunian vertikal yang nyaman dan terjangkau bagi masyarakat setempat."
-                mediaList={mediaList3}
-                progressPercentage={50}
-                category={portoType}
-              />
+                <Modal
+                  imageHeight={false}
+                  title="MANDIRI FLAT TASIKMALAYA"
+                  shortDescription=""
+                  longDescription="Pembangunan kompleks perumahan Mandiri Flat di Tasikmalaya, yang dirancang untuk menyediakan hunian vertikal yang nyaman dan terjangkau bagi masyarakat setempat."
+                  mediaList={mediaList3}
+                  progressPercentage="50"
+                  category={portoType}
+                />
               </div>
             </>
           ) : (
@@ -515,7 +509,7 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
                 shortDescription=""
                 longDescription="Pembangunan fasilitas sekolah SMPN 7 di Tambun untuk mendukung pendidikan dengan menyediakan ruang belajar yang modern dan nyaman bagi siswa dan tenaga pengajar."
                 mediaList={mediaList5}
-                progressPercentage={50}
+                progressPercentage="70"
                 category={portoType}
               />
 
@@ -526,7 +520,7 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
                   shortDescription=""
                   longDescription="Pembangunan stadion mini di Bojong Mangu untuk meningkatkan fasilitas olahraga dan mendukung kegiatan olahraga lokal dengan fasilitas yang memadai dan akses mudah bagi masyarakat."
                   mediaList={mediaList6}
-                  progressPercentage={50}
+                  progressPercentage="0"
                   category={portoType}
                 />
               </div>
@@ -538,7 +532,7 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
                   shortDescription=""
                   longDescription="Pembangunan Unit Pelaksana Teknis Daerah Perlindungan Perempuan dan Anak (UPTD PPA) untuk menyediakan fasilitas layanan yang mendukung perlindungan dan pemberdayaan perempuan serta anak di daerah."
                   mediaList={mediaList7}
-                  progressPercentage={50}
+                  progressPercentage="0"
                   category={portoType}
                 />
               </div>
@@ -549,7 +543,7 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
                 shortDescription="Short Desc"
                 longDescription="Pembangunan fasilitas workshop Binamarga untuk mendukung pemeliharaan dan perbaikan infrastruktur jalan, serta meningkatkan kualitas pelayanan dan kinerja sektor transportasi."
                 mediaList={mediaList8}
-                progressPercentage={50}
+                progressPercentage="0"
                 category={portoType}
               />
             </>

@@ -4,9 +4,13 @@ import { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
+import { p } from "framer-motion/client";
 
 const inter = Inter({ subsets: ["latin"] });
-const roboto = Roboto({ subsets: ["latin"] });
+const roboto = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 type MediaItem = {
   type: string;
@@ -20,7 +24,7 @@ type ModalProps = {
   shortDescription: string;
   longDescription: string; // Detailed description for the modal
   mediaList: MediaItem[]; // List of images or videos
-  progressPercentage: number;
+  progressPercentage: string;
   category: string; // INFRASTRUCTURE OR DEVELOPMENT (case insensitive)
 };
 
@@ -95,14 +99,18 @@ const Modal = ({
             {shortDescription}
           </p>
         </div>
-        <div className={`w-full flex h-full items-center justify-center pt-2 ${imageHeight ? 'h-[500px]' : 'h-[250px]'}`}>
+        <div
+          className={`w-full flex h-full items-center justify-center pt-2 ${
+            imageHeight ? "h-[500px]" : "h-[250px]"
+          }`}
+        >
           <Image
             src={mediaList[0]?.src || "/placeholder-porto-plain.png"}
             alt={title}
             width={648.62}
             height={56.4}
             className={`rounded-md ${
-              imageHeight ? 'h-full' : 'h-[250px]'
+              imageHeight ? "h-full" : "h-[250px]"
             } w-full object-cover`}
           />
         </div>
@@ -143,11 +151,13 @@ const Modal = ({
               )}
 
               <div className="flex absolute inset-0 z-30 justify-end text-end items-end  pr-8 pb-8">
-                {category !== "Development" && (
-                  <p className="font-white font-bold text-xl text-white">
-                    {mediaList[currentIndex].progress || progressPercentage}% <br /> Work in Progress
-                  </p>
-                )}
+                {category !== "Development" &&
+                  mediaList[currentIndex].type !== "image" && (
+                    <p className="font-white font-bold text-xl text-white">
+                      {mediaList[currentIndex].progress || progressPercentage}%{" "}
+                      <br /> Work in Progress
+                    </p>
+                  )}
               </div>
             </div>
 
@@ -264,7 +274,8 @@ const Modal = ({
               <div className="flex absolute inset-0 z-30 justify-end text-end items-end  pr-4 pb-4">
                 {category !== "Development" && (
                   <p className="font-white font-bold md:text-lg text-sm text-white">
-                    {mediaList[currentIndex].progress || progressPercentage}% <br /> Work in Progress
+                    {mediaList[currentIndex].progress || progressPercentage}%{" "}
+                    <br /> Work in Progress
                   </p>
                 )}
               </div>

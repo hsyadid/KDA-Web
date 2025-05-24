@@ -5,6 +5,7 @@ import Image from "next/image";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Shadow from "./components/Shadow";
+import { useEffect, useState } from "react";
 
 const roboto = Roboto({ subsets: ["latin"] });
 
@@ -22,6 +23,12 @@ const projectImages: ImageItem[] = [
 ];
 
 const AboutUsModule = () => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -162,42 +169,44 @@ const AboutUsModule = () => {
 
           {/* Slider view - Mobile only */}
           <div className="2xl:hidden w-full justify-center items-center px-12  min-md:px-24 pt-10 z-5">
-            <Carousel
-              responsive={responsive}
-              removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
-              infinite={true}
-              autoPlay={true}
-              showDots={true}
-              autoPlaySpeed={3000}
-            >
-              <div className="px-2">
-                <Image
-                  src="/modal2/1.jpeg"
-                  alt="Project Image 1"
-                  width={372}
-                  height={681}
-                  className="rounded-xl object-cover"
-                />
-              </div>
-              <div className="px-2">
-                <Image
-                  src="/modal5/1.png"
-                  alt="Project Image 2"
-                  width={372}
-                  height={681}
-                  className="rounded-xl object-cover"
-                />
-              </div>
-              <div className="px-2">
-                <Image
-                  src="/modal6/1.png"
-                  alt="Project Image 3"
-                  width={372}
-                  height={681}
-                  className="rounded-xl object-cover"
-                />
-              </div>
-            </Carousel>
+            {isMounted && (
+              <Carousel
+                responsive={responsive}
+                removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
+                infinite={true}
+                autoPlay={true}
+                showDots={true}
+                autoPlaySpeed={3000}
+              >
+                <div className="px-2">
+                  <Image
+                    src="/modal2/1.jpeg"
+                    alt="Project Image 1"
+                    width={372}
+                    height={681}
+                    className="rounded-xl object-cover"
+                  />
+                </div>
+                <div className="px-2">
+                  <Image
+                    src="/modal5/1.png"
+                    alt="Project Image 2"
+                    width={372}
+                    height={681}
+                    className="rounded-xl object-cover"
+                  />
+                </div>
+                <div className="px-2">
+                  <Image
+                    src="/modal6/1.png"
+                    alt="Project Image 3"
+                    width={372}
+                    height={681}
+                    className="rounded-xl object-cover"
+                  />
+                </div>
+              </Carousel>
+            )}
           </div>
 
           <Image

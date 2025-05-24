@@ -127,7 +127,7 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
     {
       type: "video",
       src: "modal7/3.mp4",
-      progress: 75,
+      progress: 100,
     },
   ];
 

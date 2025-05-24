@@ -39,6 +39,7 @@ const Modal = ({
 }: ModalProps) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [mainImage, setMainImage] = useState<string>(mediaList[0]?.src || "");
+  const [isVideoLoading, setIsVideoLoading] = useState(true);
   const swiperRef = useRef<SwiperRef>(null);
   const desktopVideoRef = useRef<HTMLVideoElement>(null);
   const mobileVideoRef = useRef<HTMLVideoElement>(null);
@@ -51,6 +52,15 @@ const Modal = ({
 
   const next = () => {
     setCurrentIndex((prev) => (prev + 1) % mediaList.length);
+  };
+
+  const handleVideoLoad = () => {
+    setIsVideoLoading(false);
+  };
+
+  const handleVideoError = (src: string) => {
+    console.error("Failed to load video:", src);
+    setIsVideoLoading(false);
   };
 
   useEffect(() => {
@@ -67,10 +77,26 @@ const Modal = ({
       }
     }
 
+    if (!isModalOpen) {
+      // Reset video loading state when modal closes
+      setIsVideoLoading(true);
+      // Pause and unload videos
+      if (desktopVideoRef.current) {
+        desktopVideoRef.current.pause();
+        desktopVideoRef.current.removeAttribute('src');
+        desktopVideoRef.current.load();
+      }
+      if (mobileVideoRef.current) {
+        mobileVideoRef.current.pause();
+        mobileVideoRef.current.removeAttribute('src');
+        mobileVideoRef.current.load();
+      }
+    }
+
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isModalOpen]);
+  }, [isModalOpen, currentIndex]);
 
   const handlePrev = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
@@ -131,15 +157,25 @@ const Modal = ({
                   src={mainImage}
                   alt="placeholder"
                   fill
-                  className="object-cover  border-2 border-white rounded-lg"
+                  priority
+                  className="object-cover border-2 border-white rounded-lg"
                 />
               ) : (
                 <div className="relative w-full z-20 h-full">
+                  {isVideoLoading && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-lg">
+                      <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                    </div>
+                  )}
                   <video
                     ref={desktopVideoRef}
                     src={mediaList[currentIndex].src}
-                    className="w-full h-full  object-cover rounded-lg border-2 border-white  "
+                    className="w-full h-full object-cover rounded-lg border-2 border-white"
                     autoPlay
+                    playsInline
+                    preload="metadata"
+                    onLoadedData={handleVideoLoad}
+                    onError={() => handleVideoError(mediaList[currentIndex].src)}
                   />
                 </div>
               )}
@@ -255,15 +291,27 @@ const Modal = ({
                   src={mediaList[currentIndex].src}
                   alt="placeholder"
                   fill
+                  priority
                   className="object-cover rounded-lg"
                 />
               ) : (
-                <video
-                  ref={mobileVideoRef}
-                  src={mediaList[currentIndex].src}
-                  className="w-full h-full object-cover rounded-lg "
-                  autoPlay
-                />
+                <>
+                  {isVideoLoading && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-lg">
+                      <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                    </div>
+                  )}
+                  <video
+                    ref={mobileVideoRef}
+                    src={mediaList[currentIndex].src}
+                    className="w-full h-full object-cover rounded-lg"
+                    autoPlay
+                    playsInline
+                    preload="metadata"
+                    onLoadedData={handleVideoLoad}
+                    onError={() => handleVideoError(mediaList[currentIndex].src)}
+                  />
+                </>
               )}
               <div className="flex absolute inset-0 z-30 justify-end text-end items-end  pr-4 pb-4">
                 {category !== "Development" && (

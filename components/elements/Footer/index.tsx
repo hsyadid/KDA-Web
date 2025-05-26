@@ -69,7 +69,7 @@ export default function Footer() {
               href="https://youtube.com" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:text-yellow transition-colors p-2"
+              className="text-white/30 cursor-not-allowed p-2"
               aria-label="YouTube"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 512 512">
@@ -80,7 +80,7 @@ export default function Footer() {
               href="https://facebook.com" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:text-yellow transition-colors p-2"
+              className="text-white/30 cursor-not-allowed p-2"
               aria-label="Facebook"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 512 512">
@@ -91,7 +91,7 @@ export default function Footer() {
               href="https://twitter.com" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:text-yellow transition-colors p-2"
+              className="text-white/30 cursor-not-allowed p-2"
               aria-label="Twitter"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 512 512">
@@ -99,7 +99,7 @@ export default function Footer() {
               </svg>
             </a>
             <a 
-              href="https://instagram.com" 
+              href="https://www.instagram.com/karyadimensinugraha_/" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="hover:text-yellow transition-colors p-2"
@@ -114,7 +114,7 @@ export default function Footer() {
               href="https://linkedin.com" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:text-yellow transition-colors p-2"
+              className="text-white/30 cursor-not-allowed p-2"
               aria-label="LinkedIn"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 512 512">

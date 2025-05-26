@@ -41,6 +41,7 @@ const Modal = ({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [mainImage, setMainImage] = useState<string>(mediaList[0]?.src || "");
   const [isVideoLoading, setIsVideoLoading] = useState(true);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const swiperRef = useRef<SwiperRef>(null);
@@ -102,12 +103,13 @@ const Modal = ({
 
   useEffect(() => {
     if (isModalOpen && mediaList[currentIndex]?.type === "video") {
+      // Reset states when switching videos
+      setIsVideoLoading(true);
+      setIsVideoPlaying(false);
+      
       // Optimize mobile video loading
       if (mobileVideoRef.current && isMobile) {
         const video = mobileVideoRef.current;
-        
-        // Reset loading state
-        setIsVideoLoading(true);
         
         // Mobile-specific optimizations
         video.setAttribute('playsinline', 'true');
@@ -125,18 +127,11 @@ const Modal = ({
         if (playPromise !== undefined) {
           playPromise.then(() => {
             setIsVideoLoading(false);
-            // Request fullscreen for mobile if needed (optional)
-            // Commenting out fullscreen for better UX
-            /*
-            if (video.requestFullscreen) {
-              video.requestFullscreen().catch(() => {
-                // Fullscreen failed, continue without it
-              });
-            }
-            */
+            setIsVideoPlaying(true);
           }).catch(error => {
             console.error("Error playing mobile video:", error);
             setIsVideoLoading(false);
+            setIsVideoPlaying(false);
           });
         }
       }
@@ -144,7 +139,6 @@ const Modal = ({
       // Also prepare desktop video
       if (desktopVideoRef.current && !isMobile) {
         const video = desktopVideoRef.current;
-        setIsVideoLoading(true);
         video.preload = "auto";
         video.load();
         
@@ -152,9 +146,11 @@ const Modal = ({
         if (playPromise !== undefined) {
           playPromise.then(() => {
             setIsVideoLoading(false);
+            setIsVideoPlaying(true);
           }).catch(error => {
             console.error("Desktop video error:", error);
             setIsVideoLoading(false);
+            setIsVideoPlaying(false);
           });
         }
       }
@@ -243,6 +239,7 @@ const Modal = ({
     
     // Reset states
     setIsVideoLoading(true);
+    setIsVideoPlaying(false);
     setCurrentIndex(0);
     
     // Close modal
@@ -301,7 +298,7 @@ const Modal = ({
                 />
               ) : (
                 <div className="relative w-full z-20 h-full">
-                  {isVideoLoading && (
+                  {isVideoLoading && !isVideoPlaying && (
                     <div className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-lg">
                       <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
                     </div>
@@ -314,9 +311,36 @@ const Modal = ({
                     playsInline
                     preload="metadata"
                     onLoadedData={() => setIsVideoLoading(false)}
+                    onPlaying={() => {
+                      setIsVideoLoading(false);
+                      setIsVideoPlaying(true);
+                    }}
+                    onPause={() => {
+                      setIsVideoPlaying(false);
+                    }}
                     onError={(e) => {
                       console.error("Video error:", e);
                       setIsVideoLoading(false);
+                      setIsVideoPlaying(false);
+                    }}
+                    onWaiting={() => {
+                      // Only show loading if video is not already playing
+                      if (!isVideoPlaying) {
+                        setIsVideoLoading(true);
+                      }
+                    }}
+                    onStalled={() => {
+                      // Only show loading if video is not already playing
+                      if (!isVideoPlaying) {
+                        setIsVideoLoading(true);
+                      }
+                    }}
+                    onTimeUpdate={() => {
+                      // Ensure video is marked as playing
+                      if (!isVideoPlaying && desktopVideoRef.current && !desktopVideoRef.current.paused) {
+                        setIsVideoPlaying(true);
+                        setIsVideoLoading(false);
+                      }
                     }}
                   />
                 </div>
@@ -436,7 +460,7 @@ const Modal = ({
                 />
               ) : (
                 <div className="relative w-full h-full">
-                  {isVideoLoading && (
+                  {isVideoLoading && !isVideoPlaying && (
                     <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 rounded-lg z-40">
                       <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin mb-3"></div>
                       <p className="text-white text-sm font-medium">Loading video...</p>
@@ -460,22 +484,57 @@ const Modal = ({
                       objectFit: 'cover',
                       backgroundColor: '#000'
                     }}
-                    onLoadStart={() => setIsVideoLoading(true)}
-                    onLoadedData={() => setIsVideoLoading(false)}
-                    onCanPlay={() => setIsVideoLoading(false)}
-                    onCanPlayThrough={() => setIsVideoLoading(false)}
+                    onLoadStart={() => {
+                      if (!isVideoPlaying) {
+                        setIsVideoLoading(true);
+                      }
+                    }}
+                    onLoadedData={() => {
+                      setIsVideoLoading(false);
+                    }}
+                    onCanPlay={() => {
+                      setIsVideoLoading(false);
+                    }}
+                    onCanPlayThrough={() => {
+                      setIsVideoLoading(false);
+                    }}
+                    onPlaying={() => {
+                      setIsVideoLoading(false);
+                      setIsVideoPlaying(true);
+                    }}
+                    onPause={() => {
+                      setIsVideoPlaying(false);
+                    }}
                     onError={(e) => {
                       console.error("Video error:", e);
                       setIsVideoLoading(false);
+                      setIsVideoPlaying(false);
                     }}
-                    onStalled={() => setIsVideoLoading(true)}
-                    onWaiting={() => setIsVideoLoading(true)}
-                    onPlaying={() => setIsVideoLoading(false)}
-                    onSuspend={() => setIsVideoLoading(true)}
-                    onAbort={() => setIsVideoLoading(false)}
+                    onStalled={() => {
+                      // Only show loading if video is not already playing
+                      if (!isVideoPlaying) {
+                        setIsVideoLoading(true);
+                      }
+                    }}
+                    onWaiting={() => {
+                      // Only show loading if video is not already playing
+                      if (!isVideoPlaying) {
+                        setIsVideoLoading(true);
+                      }
+                    }}
+                    onSuspend={() => {
+                      // Only show loading if video is not already playing
+                      if (!isVideoPlaying) {
+                        setIsVideoLoading(true);
+                      }
+                    }}
+                    onAbort={() => {
+                      setIsVideoLoading(false);
+                      setIsVideoPlaying(false);
+                    }}
                     onProgress={() => {
                       // Video is buffering/loading
-                      if (mobileVideoRef.current) {
+                      if (mobileVideoRef.current && !isVideoPlaying) {
                         const video = mobileVideoRef.current;
                         if (video.buffered.length > 0) {
                           const bufferedEnd = video.buffered.end(video.buffered.length - 1);
@@ -487,6 +546,12 @@ const Modal = ({
                       }
                     }}
                     onTimeUpdate={() => {
+                      // Ensure video is marked as playing
+                      if (!isVideoPlaying && mobileVideoRef.current && !mobileVideoRef.current.paused) {
+                        setIsVideoPlaying(true);
+                        setIsVideoLoading(false);
+                      }
+                      
                       // Preload next video when current video is halfway through
                       if (mobileVideoRef.current && mediaList.length > 1) {
                         const video = mobileVideoRef.current;

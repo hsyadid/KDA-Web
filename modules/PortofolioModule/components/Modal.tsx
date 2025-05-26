@@ -440,7 +440,6 @@ const Modal = ({
                     <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 rounded-lg z-40">
                       <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin mb-3"></div>
                       <p className="text-white text-sm font-medium">Loading video...</p>
-                      <p className="text-white/70 text-xs mt-1">Optimizing for mobile</p>
                     </div>
                   )}
                   <video

@@ -200,7 +200,7 @@ const Modal = ({
         </div>
         <div className="flex-1 w-full pt-2">
           <Image
-            src={mediaList[0]?.src || "/placeholder-porto-plain.png"}
+            src={mediaList[0]?.type === "video" ? "/default_video.jpg" : mediaList[0]?.src || "/placeholder-porto-plain.png"}
             alt={title}
             width={648.62}
             height={56.4}
@@ -288,9 +288,11 @@ const Modal = ({
                       </div>
                     ) : (
                       <div className="relative w-full h-full">
-                        <video
-                          src={mediaSource.src}
-                          className="w-full h-full object-cover rounded-lg hover:cursor-pointer"
+                        <Image
+                          src="/default_video.jpg"
+                          alt="Video thumbnail"
+                          fill
+                          className="object-cover z-30 rounded-lg hover:cursor-pointer"
                           onClick={() => {
                             setMainImage(mediaSource.src);
                             setCurrentIndex(index);
@@ -411,19 +413,20 @@ const Modal = ({
                           className="object-cover rounded-lg hover:cursor-pointer"
                           onClick={() => {
                             setCurrentIndex(index);
-                            setMainImage(mainImage);
+                            setMainImage(mediaSrc.src);
                           }}
                         />
                       </div>
                     ) : (
                       <div className="relative md:h-40 h-20">
-                        <video
-                          className="object-cover w-full h-full rounded-lg hover:cursor-pointer"
-                          src={mediaSrc.src}
-                          onError={() => handleVideoError(mediaSrc.src)}
+                        <Image
+                          src="/default_video.jpg"
+                          alt="Video thumbnail"
+                          fill
+                          className="object-cover rounded-lg hover:cursor-pointer"
                           onClick={() => {
                             setCurrentIndex(index);
-                            setMainImage(mainImage);
+                            setMainImage(mediaSrc.src);
                           }}
                         />
                         {category !== "Development" && (

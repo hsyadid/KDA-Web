@@ -15,7 +15,8 @@ const roboto = Roboto({
 type MediaItem = {
   type: string;
   src: string;
-  progress?: number; // Add progress for each media item
+  poster?: string; // Add poster/thumbnail support
+  progress?: number;
 };
 
 type ModalProps = {
@@ -40,9 +41,11 @@ const Modal = ({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [mainImage, setMainImage] = useState<string>(mediaList[0]?.src || "");
   const [isVideoLoading, setIsVideoLoading] = useState(true);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const swiperRef = useRef<SwiperRef>(null);
   const desktopVideoRef = useRef<HTMLVideoElement>(null);
   const mobileVideoRef = useRef<HTMLVideoElement>(null);
+  const modalContentRef = useRef<HTMLDivElement>(null);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -61,6 +64,22 @@ const Modal = ({
   const handleVideoError = (src: string) => {
     console.error("Failed to load video:", src);
     setIsVideoLoading(false);
+  };
+
+  const handleVideoClick = () => {
+    if (window.innerWidth <= 768) { // Mobile breakpoint
+      const video = mobileVideoRef.current;
+      if (video) {
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if ((video as any).webkitRequestFullscreen) {
+          (video as any).webkitRequestFullscreen();
+        } else if ((video as any).mozRequestFullScreen) {
+          (video as any).mozRequestFullScreen();
+        }
+        setIsFullscreen(true);
+      }
+    }
   };
 
   useEffect(() => {
@@ -93,10 +112,64 @@ const Modal = ({
       }
     }
 
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
+    };
+  }, [isModalOpen, currentIndex]);
+
+  useEffect(() => {
+    // Auto fullscreen when video starts playing on mobile
+    const handleVideoPlay = () => {
+      if (window.innerWidth <= 768 && mobileVideoRef.current) {
+        const video = mobileVideoRef.current;
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if ((video as any).webkitRequestFullscreen) {
+          (video as any).webkitRequestFullscreen();
+        } else if ((video as any).mozRequestFullScreen) {
+          (video as any).mozRequestFullScreen();
+        }
+      }
+    };
+
+    const video = mobileVideoRef.current;
+    if (video) {
+      video.addEventListener('play', handleVideoPlay);
+      return () => video.removeEventListener('play', handleVideoPlay);
+    }
+  }, [currentIndex]);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+      // Preload video when modal opens
+      if (mediaList[currentIndex].type === "video" && mobileVideoRef.current) {
+        mobileVideoRef.current.load();
+      }
+    } else {
+      document.body.style.overflow = "";
+      // Reset video when modal closes
+      if (mobileVideoRef.current) {
+        mobileVideoRef.current.pause();
+        mobileVideoRef.current.currentTime = 0;
+      }
+    }
+
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isModalOpen, currentIndex]);
+  }, [isModalOpen, currentIndex, mediaList]);
 
   const handlePrev = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
@@ -265,7 +338,8 @@ const Modal = ({
         } fixed flex min-xl:hidden justify-center px-9 items-center h-full bg-black/60 inset-0 z-[1000] `}
       >
         <div
-          className="border-1  px-6 pb-8  border-white/50 lg:p-5 shadow-white w-fit bg-[#082C2A] rounded-xl z-0"
+          ref={modalContentRef}
+          className="border-1 px-6 pb-8 border-white/50 lg:p-5 shadow-white w-fit bg-[#082C2A] rounded-xl z-0"
           style={{ boxShadow: "inset 0 0 10px rgba(255, 255, 255, 0.2)" }}
         >
           <div className="w-full flex justify-end pb-5 pt-5">
@@ -290,7 +364,7 @@ const Modal = ({
                   className="object-cover rounded-lg"
                 />
               ) : (
-                <>
+                <div className="relative w-full h-full">
                   {isVideoLoading && (
                     <div className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-lg">
                       <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -299,17 +373,19 @@ const Modal = ({
                   <video
                     ref={mobileVideoRef}
                     src={mediaList[currentIndex].src}
-                    className="w-full h-full object-cover rounded-lg"
-                    autoPlay
+                    className={`w-full h-full object-cover rounded-lg ${isFullscreen ? 'fixed inset-0 z-50' : ''}`}
                     playsInline
-                    preload="metadata"
+                    autoPlay
+                    muted
+                    loop
+                    preload="auto"
                     onLoadedData={handleVideoLoad}
                     onError={() => handleVideoError(mediaList[currentIndex].src)}
                   />
-                </>
+                </div>
               )}
-              <div className="flex absolute inset-0 z-30 justify-end text-end items-end  pr-4 pb-4">
-                {category !== "Development" && mediaList[currentIndex].type === "video" && (
+              <div className="flex absolute inset-0 z-30 justify-end text-end items-end pr-4 pb-4">
+                {category !== "Development" && mediaList[currentIndex].type === "video" && !isFullscreen && (
                   <p className="font-white font-bold md:text-lg text-sm text-white">
                     {mediaList[currentIndex].progress || progressPercentage}%{" "}
                     <br /> Work in Progress

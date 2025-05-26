@@ -61,14 +61,14 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
 
   const mediaList3 = [...imageList3];
 
-  const imageList5 = Array.from({ length: 2 }, (_, i) => ({
-    type: "image",
-    src: `/modal5/${i + 1}.png`,
-    progress: i === 0 ? 70 : i === 1 ? 100 : 65,
-  }));
+  const imageList5 = undefined;
 
   const mediaList5 = [
-    ...imageList5,
+    {
+      type: "image",
+      src: "/modal5/1.png",
+      progress: 70,
+    },
     {
       type: "video",
       src: "modal5/1.mp4",
@@ -78,17 +78,17 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
       type: "video",
       src: "modal5/2.mp4",
       progress: 100,
-    },
+    }
   ];
 
-  const imageList6 = Array.from({ length: 3 }, (_, i) => ({
-    type: "image",
-    src: `/modal6/${i + 1}.png`,
-    progress: i === 0 ? 0 : i === 1 ? 73 : 100,
-  }));
+  const imageList6 = undefined;
 
   const mediaList6 = [
-    ...imageList6,
+    {
+      type: "image",
+      src: "/modal6/1.png",
+      progress: 0,
+    },
     {
       type: "video",
       src: "modal6/1.mp4",
@@ -103,17 +103,17 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
       type: "video",
       src: "modal6/3.mp4",
       progress: 100,
-    },
+    }
   ];
 
-  const imageList7 = Array.from({ length: 3 }, (_, i) => ({
-    type: "image",
-    src: `/modal7/${i + 1}.png`,
-    progress: i === 0 ? 35 : i === 1 ? 48 : 75,
-  }));
+  const imageList7 = undefined;
 
   const mediaList7 = [
-    ...imageList7,
+    {
+      type: "image",
+      src: "/modal7/1.png",
+      progress: 35,
+    },
     {
       type: "video",
       src: "modal7/1.mp4",
@@ -128,17 +128,17 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
       type: "video",
       src: "modal7/3.mp4",
       progress: 100,
-    },
+    }
   ];
 
-  const imageList8 = Array.from({ length: 3 }, (_, i) => ({
-    type: "image",
-    src: `/modal8/${i + 1}.png`,
-    progress: i === 0 ? 0 : i === 1 ? 75 : 100,
-  }));
+  const imageList8 = undefined;
 
   const mediaList8 = [
-    ...imageList8,
+    {
+      type: "image",
+      src: "/modal8/1.png",
+      progress: 0,
+    },
     {
       type: "video",
       src: "modal8/1.mp4",
@@ -153,7 +153,7 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
       type: "video",
       src: "modal8/3.mp4",
       progress: 100,
-    },
+    }
   ];
 
   const developmentSlides = [

@@ -81,7 +81,7 @@ export default function ContactPage() {
                 Email
               </Link>
               <Link 
-                href="https://wa.me/6285219104300" 
+                href="https://wa.me/6287884478948" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-white font-syne px-12 py-3 rounded-[15px] font-bold hover:bg-white/10 transition"
@@ -129,7 +129,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                         <h3 className="text-lg sm:text-xl font-bold mb-1 text-white/90">Nomor Telepon</h3>
-                        <p className="text-gray-300 text-sm sm:text-base">+62 852-1910-4300</p>
+                        <p className="text-gray-300 text-sm sm:text-base">+62 878-8447-8948</p>
                     </div>
                     </div>
                     

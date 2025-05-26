@@ -491,7 +491,7 @@ export default function Home() {
               </Link>
               
               <Link 
-                href="https://wa.me/6285219104300" 
+                href="https://wa.me/6287884478948" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 font-semibold w-[180px] flex justify-center items-center border-white/70 rounded-[15px] hover:bg-white/10 transition text-xl"

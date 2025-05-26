@@ -42,12 +42,25 @@ const Modal = ({
   const [mainImage, setMainImage] = useState<string>(mediaList[0]?.src || "");
   const [isVideoLoading, setIsVideoLoading] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const swiperRef = useRef<SwiperRef>(null);
   const desktopVideoRef = useRef<HTMLVideoElement>(null);
   const mobileVideoRef = useRef<HTMLVideoElement>(null);
   const modalContentRef = useRef<HTMLDivElement>(null);
 
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const prev = () => {
     setCurrentIndex((prev) => (prev - 1 + mediaList.length) % mediaList.length);
@@ -57,40 +70,118 @@ const Modal = ({
     setCurrentIndex((prev) => (prev + 1) % mediaList.length);
   };
 
-  useEffect(() => {
-    if (isModalOpen && mediaList[currentIndex]?.type === "video" && mobileVideoRef.current) {
-      const video = mobileVideoRef.current;
+  // Global function to stop all videos completely
+  const stopAllVideos = () => {
+    // Stop desktop video
+    if (desktopVideoRef.current) {
+      const video = desktopVideoRef.current;
+      video.pause();
+      video.currentTime = 0;
+      video.removeAttribute('src');
       video.load();
-      video.play().then(() => {
-        if (window.innerWidth <= 768) {
-          if (video.requestFullscreen) {
-            video.requestFullscreen();
-          } else if ((video as any).webkitRequestFullscreen) {
-            (video as any).webkitRequestFullscreen();
-          } else if ((video as any).mozRequestFullScreen) {
-            (video as any).mozRequestFullScreen();
-          }
-        }
-      }).catch(error => {
-        console.error("Error playing video:", error);
-        setIsVideoLoading(false);
-      });
+      // Remove all event listeners
+      video.onloadeddata = null;
+      video.onerror = null;
     }
-  }, [isModalOpen, currentIndex, mediaList]);
+    
+    // Stop mobile video
+    if (mobileVideoRef.current) {
+      const video = mobileVideoRef.current;
+      video.pause();
+      video.currentTime = 0;
+      video.removeAttribute('src');
+      video.load();
+      // Remove all event listeners
+      video.onloadeddata = null;
+      video.onerror = null;
+      video.onstalled = null;
+      video.onwaiting = null;
+      video.onplaying = null;
+    }
+  };
+
+  useEffect(() => {
+    if (isModalOpen && mediaList[currentIndex]?.type === "video") {
+      // Optimize mobile video loading
+      if (mobileVideoRef.current && isMobile) {
+        const video = mobileVideoRef.current;
+        
+        // Reset loading state
+        setIsVideoLoading(true);
+        
+        // Mobile-specific optimizations
+        video.setAttribute('playsinline', 'true');
+        video.setAttribute('webkit-playsinline', 'true');
+        video.setAttribute('x5-playsinline', 'true');
+        video.preload = "auto";
+        video.muted = true; // Ensure autoplay works on mobile
+        
+        // Preload and prepare video for faster playback
+        video.load();
+        
+        // Try to play video immediately with better error handling
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            setIsVideoLoading(false);
+            // Request fullscreen for mobile if needed (optional)
+            // Commenting out fullscreen for better UX
+            /*
+            if (video.requestFullscreen) {
+              video.requestFullscreen().catch(() => {
+                // Fullscreen failed, continue without it
+              });
+            }
+            */
+          }).catch(error => {
+            console.error("Error playing mobile video:", error);
+            setIsVideoLoading(false);
+          });
+        }
+      }
+      
+      // Also prepare desktop video
+      if (desktopVideoRef.current && !isMobile) {
+        const video = desktopVideoRef.current;
+        setIsVideoLoading(true);
+        video.preload = "auto";
+        video.load();
+        
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            setIsVideoLoading(false);
+          }).catch(error => {
+            console.error("Desktop video error:", error);
+            setIsVideoLoading(false);
+          });
+        }
+      }
+    }
+  }, [isModalOpen, currentIndex, mediaList, isMobile]);
 
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
-      if (mobileVideoRef.current) {
-        mobileVideoRef.current.pause();
-        mobileVideoRef.current.currentTime = 0;
+      // Force stop all videos when modal closes
+      stopAllVideos();
+      
+      // Exit fullscreen if active
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
       }
+      // Reset video loading state
+      setIsVideoLoading(true);
     }
 
+    // Cleanup function
     return () => {
       document.body.style.overflow = "";
+      // Force stop all videos on cleanup
+      stopAllVideos();
     };
   }, [isModalOpen]);
 
@@ -113,6 +204,22 @@ const Modal = ({
     };
   }, []);
 
+  // Add effect to stop videos when component unmounts
+  useEffect(() => {
+    // Add beforeunload event to stop videos when page is about to unload
+    const handleBeforeUnload = () => {
+      stopAllVideos();
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      // Cleanup on component unmount
+      stopAllVideos();
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
   const handlePrev = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
       swiperRef.current.swiper.slidePrev();
@@ -125,12 +232,29 @@ const Modal = ({
     }
   };
 
+  const handleCloseModal = () => {
+    // Force stop all videos immediately
+    stopAllVideos();
+    
+    // Exit fullscreen if needed
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    }
+    
+    // Reset states
+    setIsVideoLoading(true);
+    setCurrentIndex(0);
+    
+    // Close modal
+    setIsModalOpen(false);
+  };
+
   return (
     <div className={`${inter.className}`}>
       <div
         className={`w-full h-full rounded-md border-2 border-white/50 p-5 shadow-white hover:cursor-pointer flex flex-col`}
         style={{ boxShadow: "inset 0 0 10px rgba(255, 255, 255, 0.2)" }}
-        onClick={() => setIsModalOpen(!isModalOpen)}
+        onClick={() => setIsModalOpen(true)}
       >
         <div className="text-white lg:space-y-3">
           <p className="lg:text-4xl max-md:text-sm font-bold md:font-bold">
@@ -155,13 +279,13 @@ const Modal = ({
       <div
         className={`${
           isModalOpen ? "" : "hidden"
-        } fixed flex flex-col max-xl:hidden  justify-center items-center w-full h-full bg-black/30 backdrop-blur-lg inset-0 z-50`}
+        } fixed flex flex-col max-xl:hidden justify-center items-center w-full h-full bg-black/30 backdrop-blur-lg inset-0 z-50`}
       >
         <div className="flex flex-row justify-center items-center ml-15">
           <div className="flex flex-col space-y-9 w-[691px] ">
             <button
               className="mb-6 hover:cursor-pointer"
-              onClick={() => setIsModalOpen(!isModalOpen)}
+              onClick={handleCloseModal}
             >
               <Image src="/arrow.svg" alt="Arrow Icon" width={48} height={48} />
             </button>
@@ -290,7 +414,7 @@ const Modal = ({
           style={{ boxShadow: "inset 0 0 10px rgba(255, 255, 255, 0.2)" }}
         >
           <div className="w-full flex justify-end pb-5 pt-5">
-            <button onClick={() => setIsModalOpen(!isModalOpen)}>
+            <button onClick={handleCloseModal}>
               <Image
                 src="/exit.svg"
                 alt="exit button"
@@ -313,20 +437,34 @@ const Modal = ({
               ) : (
                 <div className="relative w-full h-full">
                   {isVideoLoading && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-lg">
-                      <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 rounded-lg z-40">
+                      <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin mb-3"></div>
+                      <p className="text-white text-sm font-medium">Loading video...</p>
+                      <p className="text-white/70 text-xs mt-1">Optimizing for mobile</p>
                     </div>
                   )}
                   <video
                     ref={mobileVideoRef}
+                    key={`mobile-${isModalOpen}-${currentIndex}`}
                     src={mediaList[currentIndex].src}
                     className={`w-full h-full object-cover rounded-lg ${isFullscreen ? 'fixed inset-0 z-50' : ''}`}
-                    playsInline
-                    autoPlay
-                    muted
-                    loop
+                    playsInline={true}
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
                     preload="auto"
+                    poster="/default_video.jpg"
+                    controls={false}
+                    disablePictureInPicture={true}
+                    disableRemotePlayback={true}
+                    style={{
+                      objectFit: 'cover',
+                      backgroundColor: '#000'
+                    }}
+                    onLoadStart={() => setIsVideoLoading(true)}
                     onLoadedData={() => setIsVideoLoading(false)}
+                    onCanPlay={() => setIsVideoLoading(false)}
+                    onCanPlayThrough={() => setIsVideoLoading(false)}
                     onError={(e) => {
                       console.error("Video error:", e);
                       setIsVideoLoading(false);
@@ -334,8 +472,42 @@ const Modal = ({
                     onStalled={() => setIsVideoLoading(true)}
                     onWaiting={() => setIsVideoLoading(true)}
                     onPlaying={() => setIsVideoLoading(false)}
+                    onSuspend={() => setIsVideoLoading(true)}
+                    onAbort={() => setIsVideoLoading(false)}
+                    onProgress={() => {
+                      // Video is buffering/loading
+                      if (mobileVideoRef.current) {
+                        const video = mobileVideoRef.current;
+                        if (video.buffered.length > 0) {
+                          const bufferedEnd = video.buffered.end(video.buffered.length - 1);
+                          const duration = video.duration;
+                          if (bufferedEnd >= duration * 0.1) { // 10% buffered
+                            setIsVideoLoading(false);
+                          }
+                        }
+                      }
+                    }}
+                    onTimeUpdate={() => {
+                      // Preload next video when current video is halfway through
+                      if (mobileVideoRef.current && mediaList.length > 1) {
+                        const video = mobileVideoRef.current;
+                        const currentTime = video.currentTime;
+                        const duration = video.duration;
+                        
+                        if (currentTime > duration * 0.5) {
+                          // Preload next video
+                          const nextIndex = (currentIndex + 1) % mediaList.length;
+                          if (mediaList[nextIndex]?.type === "video") {
+                            const nextVideo = document.createElement('video');
+                            nextVideo.preload = "metadata";
+                            nextVideo.src = mediaList[nextIndex].src;
+                          }
+                        }
+                      }
+                    }}
                   >
                     <source src={mediaList[currentIndex].src} type="video/mp4" />
+                    Your browser does not support the video tag.
                   </video>
                 </div>
               )}

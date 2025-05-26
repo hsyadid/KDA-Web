@@ -57,109 +57,32 @@ const Modal = ({
     setCurrentIndex((prev) => (prev + 1) % mediaList.length);
   };
 
-  const handleVideoLoad = () => {
-    setIsVideoLoading(false);
-  };
-
-  const handleVideoError = (src: string) => {
-    console.error("Failed to load video:", src);
-    setIsVideoLoading(false);
-  };
-
-  const handleVideoClick = () => {
-    if (window.innerWidth <= 768) { // Mobile breakpoint
+  useEffect(() => {
+    if (isModalOpen && mediaList[currentIndex]?.type === "video" && mobileVideoRef.current) {
       const video = mobileVideoRef.current;
-      if (video) {
-        if (video.requestFullscreen) {
-          video.requestFullscreen();
-        } else if ((video as any).webkitRequestFullscreen) {
-          (video as any).webkitRequestFullscreen();
-        } else if ((video as any).mozRequestFullScreen) {
-          (video as any).mozRequestFullScreen();
+      video.load();
+      video.play().then(() => {
+        if (window.innerWidth <= 768) {
+          if (video.requestFullscreen) {
+            video.requestFullscreen();
+          } else if ((video as any).webkitRequestFullscreen) {
+            (video as any).webkitRequestFullscreen();
+          } else if ((video as any).mozRequestFullScreen) {
+            (video as any).mozRequestFullScreen();
+          }
         }
-        setIsFullscreen(true);
-      }
+      }).catch(error => {
+        console.error("Error playing video:", error);
+        setIsVideoLoading(false);
+      });
     }
-  };
+  }, [isModalOpen, currentIndex, mediaList]);
 
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
-      // Pause videos when modal is closed
-      if (desktopVideoRef.current) {
-        desktopVideoRef.current.pause();
-      }
-      if (mobileVideoRef.current) {
-        mobileVideoRef.current.pause();
-      }
-    }
-
-    if (!isModalOpen) {
-      // Reset video loading state when modal closes
-      setIsVideoLoading(true);
-      // Pause and unload videos
-      if (desktopVideoRef.current) {
-        desktopVideoRef.current.pause();
-        desktopVideoRef.current.removeAttribute('src');
-        desktopVideoRef.current.load();
-      }
-      if (mobileVideoRef.current) {
-        mobileVideoRef.current.pause();
-        mobileVideoRef.current.removeAttribute('src');
-        mobileVideoRef.current.load();
-      }
-    }
-
-    const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
-    };
-
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
-
-    return () => {
-      document.body.style.overflow = "";
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
-      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
-      document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
-    };
-  }, [isModalOpen, currentIndex]);
-
-  useEffect(() => {
-    // Auto fullscreen when video starts playing on mobile
-    const handleVideoPlay = () => {
-      if (window.innerWidth <= 768 && mobileVideoRef.current) {
-        const video = mobileVideoRef.current;
-        if (video.requestFullscreen) {
-          video.requestFullscreen();
-        } else if ((video as any).webkitRequestFullscreen) {
-          (video as any).webkitRequestFullscreen();
-        } else if ((video as any).mozRequestFullScreen) {
-          (video as any).mozRequestFullScreen();
-        }
-      }
-    };
-
-    const video = mobileVideoRef.current;
-    if (video) {
-      video.addEventListener('play', handleVideoPlay);
-      return () => video.removeEventListener('play', handleVideoPlay);
-    }
-  }, [currentIndex]);
-
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden";
-      // Preload video when modal opens
-      if (mediaList[currentIndex].type === "video" && mobileVideoRef.current) {
-        mobileVideoRef.current.load();
-      }
-    } else {
-      document.body.style.overflow = "";
-      // Reset video when modal closes
       if (mobileVideoRef.current) {
         mobileVideoRef.current.pause();
         mobileVideoRef.current.currentTime = 0;
@@ -169,7 +92,26 @@ const Modal = ({
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isModalOpen, currentIndex, mediaList]);
+  }, [isModalOpen]);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement && mobileVideoRef.current) {
+        mobileVideoRef.current.pause();
+        mobileVideoRef.current.currentTime = 0;
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
+    };
+  }, []);
 
   const handlePrev = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
@@ -247,8 +189,11 @@ const Modal = ({
                     autoPlay
                     playsInline
                     preload="metadata"
-                    onLoadedData={handleVideoLoad}
-                    onError={() => handleVideoError(mediaList[currentIndex].src)}
+                    onLoadedData={() => setIsVideoLoading(false)}
+                    onError={(e) => {
+                      console.error("Video error:", e);
+                      setIsVideoLoading(false);
+                    }}
                   />
                 </div>
               )}
@@ -381,9 +326,17 @@ const Modal = ({
                     muted
                     loop
                     preload="auto"
-                    onLoadedData={handleVideoLoad}
-                    onError={() => handleVideoError(mediaList[currentIndex].src)}
-                  />
+                    onLoadedData={() => setIsVideoLoading(false)}
+                    onError={(e) => {
+                      console.error("Video error:", e);
+                      setIsVideoLoading(false);
+                    }}
+                    onStalled={() => setIsVideoLoading(true)}
+                    onWaiting={() => setIsVideoLoading(true)}
+                    onPlaying={() => setIsVideoLoading(false)}
+                  >
+                    <source src={mediaList[currentIndex].src} type="video/mp4" />
+                  </video>
                 </div>
               )}
               <div className="flex absolute inset-0 z-30 justify-end text-end items-end pr-4 pb-4">

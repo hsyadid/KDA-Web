@@ -23,9 +23,15 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
   const [mainImage, setMainImage] = useState(
     portoType === "Development" ? "/modal1/1.jpeg" : "/modal5/1.png"
   );
-  const [title, setTitle] = useState("Konstruksi Rumah ABCD");
+  const [title, setTitle] = useState(
+    portoType === "Development"
+      ? "Pembangunan pusat inovasi dan kewirausahaan di IPB untuk mendukung pengembangan ide dan kolaborasi antar pelaku bisnis dan mahasiswa."
+      : "Pembangunan fasilitas sekolah SMPN 7 di Tambun untuk mendukung pendidikan dengan menyediakan ruang belajar yang modern dan nyaman bagi siswa dan tenaga pengajar."
+  );
   const [desc, setDesc] = useState(
-    "Konstruksi Rumah ABCD Konstruksi Rumah ABCD Konstruksi Rumah ABCD"
+    portoType === "Development"
+      ? "INNOPRENEURSHIP CENTRE MANDIRI IPB"
+      : "SMPN 7 TAMBUN"
   );
 
   const imageList1 = Array.from({ length: 28 }, (_, i) => ({

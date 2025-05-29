@@ -25,13 +25,13 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
   );
   const [title, setTitle] = useState(
     portoType === "Development"
-      ? "Pembangunan pusat inovasi dan kewirausahaan di IPB untuk mendukung pengembangan ide dan kolaborasi antar pelaku bisnis dan mahasiswa."
-      : "Pembangunan fasilitas sekolah SMPN 7 di Tambun untuk mendukung pendidikan dengan menyediakan ruang belajar yang modern dan nyaman bagi siswa dan tenaga pengajar."
+      ? "INNOPRENEURSHIP CENTRE MANDIRI IPB"
+      : "SMPN 7 TAMBUN"
   );
   const [desc, setDesc] = useState(
     portoType === "Development"
-      ? "INNOPRENEURSHIP CENTRE MANDIRI IPB"
-      : "SMPN 7 TAMBUN"
+      ? "Pembangunan pusat inovasi dan kewirausahaan di IPB untuk mendukung pengembangan ide dan kolaborasi antar pelaku bisnis dan mahasiswa."
+      : "Pembangunan fasilitas sekolah SMPN 7 di Tambun untuk mendukung pendidikan dengan menyediakan ruang belajar yang modern dan nyaman bagi siswa dan tenaga pengajar."
   );
 
   const imageList1 = Array.from({ length: 28 }, (_, i) => ({
@@ -84,7 +84,7 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
       type: "video",
       src: "modal5/2.mp4",
       progress: 100,
-    }
+    },
   ];
 
   const imageList6 = undefined;
@@ -109,7 +109,7 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
       type: "video",
       src: "modal6/3.mp4",
       progress: 100,
-    }
+    },
   ];
 
   const imageList7 = undefined;
@@ -134,7 +134,7 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
       type: "video",
       src: "modal7/3.mp4",
       progress: 100,
-    }
+    },
   ];
 
   const imageList8 = undefined;
@@ -159,7 +159,7 @@ const PortofolioModuleDev = ({ portoType }: PortofolioModuleProps) => {
       type: "video",
       src: "modal8/3.mp4",
       progress: 100,
-    }
+    },
   ];
 
   const developmentSlides = [

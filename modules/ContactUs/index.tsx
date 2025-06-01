@@ -143,7 +143,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                         <h3 className="text-lg sm:text-xl font-bold mb-1 text-white/90">Alamat Fisik</h3>
-                        <p className="text-gray-300 text-sm sm:text-base">Jl. Merdeka No. 123, Jakarta, Indonesia</p>
+                        <p className="text-gray-300 text-sm sm:text-base">Perum Metland Tambun, Jalan Biduri III Blok F 22-23, Kelurahan Cibuntu, Kecamatan Cibitung, Kabupaten Bekasi, Kode Pos : 17520</p>
                     </div>
                     </div>
                     
